@@ -1,0 +1,39 @@
+@import '../../sass/abstracts/variables';
+
+.nav {
+    display: flex;
+    align-items: center;
+
+    background-color: $color-primary-dark;
+    color: $color-white;
+    padding: 1rem 10rem;
+
+    &__heading {
+        margin-right: auto;
+        // display: flex;
+        // flex-direction: column;
+        font-weight: 300;
+    }
+
+    &__list {
+
+    }
+
+    &__link {
+        list-style-type: none;
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: all .1s;
+
+        &:hover {
+            text-decoration: underline;
+            transform: scale(1.1);
+        }
+
+        & span {
+            margin-right: .5rem;
+        }
+    }
+}
