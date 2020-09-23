@@ -6,16 +6,25 @@ import { IoIosLogIn } from 'react-icons/io';
 import { AiOutlineMail } from 'react-icons/ai';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { auth } from './../../firebase/firebase.utils';
+import { connect } from 'react-redux';
+import { asyncGetUser } from '../../Redux/User/user.actions';
+import { selectUserDetail } from '../../Redux/User/user.selectors';
+import { selectCurrentUser } from './../../Redux/User/user.selectors';
 
-const LoginPage = () => {
+const LoginPage = ({ getUserDetails, userDetail, currentUser }) => {
     const [userCredentials, setUserCredentials] = useState({ email: '', password: '' });
     const { email, password } = userCredentials;
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
         console.log(userCredentials);
         setUserCredentials({ email: '', password: '' });
-        auth.signInWithEmailAndPassword(email, password);
+        await auth.signInWithEmailAndPassword(email, password);
+        auth.onAuthStateChanged(async user => {
+            await getUserDetails(user.uid);
+            console.log(currentUser);
+            if(userDetail) console.log(userDetail)
+        });
     }
 
     const handleChange = e => {
@@ -57,4 +66,13 @@ const LoginPage = () => {
     )
 }
 
-export default LoginPage;
+const mapDispatchToProps = dispatch => ({
+    getUserDetails: id => dispatch(asyncGetUser(id))
+});
+
+const mapStateToProps = state => ({
+    userDetail: selectUserDetail(state),
+    currentUser: selectCurrentUser(state)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps) (LoginPage);
