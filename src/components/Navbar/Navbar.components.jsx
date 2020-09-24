@@ -14,7 +14,6 @@ const Navbar = () => {
                     <span>Sign Out</span>
                     <AiOutlineLogout className="nav__link-icon" />
                 </li>
-                <Link className="nav__link" to="/manager">Manager</Link>
             </ul>
         </div>
     )

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import Navbar from '../../components/Navbar/Navbar.components';
 import './loginPage.styles.scss';
 
@@ -11,7 +11,7 @@ import { asyncGetUser } from '../../Redux/User/user.actions';
 import { selectUserDetail } from '../../Redux/User/user.selectors';
 import { selectCurrentUser } from './../../Redux/User/user.selectors';
 
-const LoginPage = ({ getUserDetails, userDetail, currentUser }) => {
+const LoginPage = ({ currentUser }) => {
     const [userCredentials, setUserCredentials] = useState({ email: '', password: '' });
     const { email, password } = userCredentials;
 
@@ -19,12 +19,11 @@ const LoginPage = ({ getUserDetails, userDetail, currentUser }) => {
         e.preventDefault();
         console.log(userCredentials);
         setUserCredentials({ email: '', password: '' });
-        await auth.signInWithEmailAndPassword(email, password);
-        auth.onAuthStateChanged(async user => {
-            await getUserDetails(user.uid);
-            console.log(currentUser);
-            if(userDetail) console.log(userDetail)
-        });
+        try {
+            await auth.signInWithEmailAndPassword(email, password);
+        } catch (error) {
+
+        }
     }
 
     const handleChange = e => {
