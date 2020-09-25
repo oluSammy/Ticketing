@@ -3,7 +3,7 @@ import './Navbar.styles.scss';
 
 import { AiOutlineLogout } from 'react-icons/ai';
 import { auth } from './../../firebase/firebase.utils';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     return (

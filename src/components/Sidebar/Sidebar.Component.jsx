@@ -28,7 +28,7 @@ const Sidebar = () => {
                     <span>Due Today</span>
                 </li>
                 <li className="sidebar__link">
-                    <GoCalendar className="sidebar__link-icon" />
+                    <BiCommentError className="sidebar__link-icon" />
                     <span>Overdue</span>
                 </li>
                 <li className="sidebar__link">

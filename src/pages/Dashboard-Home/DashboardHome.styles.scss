@@ -1,0 +1,50 @@
+@import '../../sass/abstracts/variables';
+
+.dashboard-home {
+    padding: 2rem;
+}
+
+.ticket-box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 18rem));
+    grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
+}
+
+.ticket-box {
+    background-color: #ffffff;
+    // width: 19rem;
+    padding: 1.7rem;
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: all .1s;
+
+    &__header {
+        display: flex;
+        align-items: center;
+    }
+
+    &__title {
+        margin-right: auto;
+        font-size: 1.6rem;
+        color: $text-color;
+    }
+
+    &__number {
+        font-size: 2rem;
+        color: $text-color;
+    }
+
+    &__icon {
+        font-size: 1.7rem;
+    }
+}
+
+.ticket-box:hover {
+    transform: scale(1.02);
+}
+
+.ticket-box:hover .ticket-box__title, .ticket-box__number {
+    color: $color-primary-dark;
+}
