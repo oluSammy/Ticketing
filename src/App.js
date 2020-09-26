@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
-import { Route } from 'react-router-dom';
+// import { Route } from 'react-router-dom';
 import './App.scss';
-import LoginPage from './pages/loginPage/loginPage.component';
-import ManagerHomepage from './pages/Manager-HomePage/managerHomepage.components';
+// import LoginPage from './pages/loginPage/loginPage.component';
 import { connect } from 'react-redux';
 import { setUser } from './Redux/User/user.actions';
 import { selectCurrentUser } from './Redux/User/user.selectors';
@@ -18,9 +17,10 @@ function App({ setCurrentUser, currentUser }) {
   });
   return (
     <div className="App">
-      <Route exact path="/" component={LoginPage} />
-      <Route exact path="/manager" component={ManagerHomepage} />
-      <Route exact path="/dashboard" component={Dashboard} />
+      {/* <Route exact path="/" component={LoginPage} /> */}
+      {/* <Route exact path="/dashboard" component={Dashboard} /> */}
+      {/* <Route exact path="/due" component={Dashboard} /> */}
+      <Dashboard />
     </div>
   );
 }

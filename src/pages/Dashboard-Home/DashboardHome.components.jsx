@@ -2,7 +2,7 @@ import React from 'react';
 import './DashboardHome.styles.scss';
 
 import { CgAssign } from 'react-icons/cg'
-import { BiCalendarWeek, BiCommentError, BiUserPlus } from 'react-icons/bi'
+import { BiCalendarWeek, BiCommentError } from 'react-icons/bi'
 import { BiCheckDouble } from 'react-icons/bi';
 import { MdAssignmentInd } from 'react-icons/md';
 

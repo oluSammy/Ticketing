@@ -4,7 +4,6 @@ import { GrUserManager } from 'react-icons/gr';
 import { AiOutlineHome } from 'react-icons/ai';
 import { CgAssign } from 'react-icons/cg'
 import { BiCalendarWeek, BiCommentError, BiUserPlus } from 'react-icons/bi'
-import { GoCalendar } from 'react-icons/go';
 import { BiCheckDouble } from 'react-icons/bi';
 import { FiUserPlus } from 'react-icons/fi';
 

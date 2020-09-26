@@ -13,12 +13,12 @@
 
 .ticket-box {
     background-color: #ffffff;
-    // width: 19rem;
     padding: 1.7rem;
     box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
     border-radius: .5rem;
     cursor: pointer;
     transition: all .1s;
+    border: 1px solid $color-grey-light;
 
     &__header {
         display: flex;
