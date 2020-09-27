@@ -6,6 +6,7 @@ import { CgAssign } from 'react-icons/cg'
 import { BiCalendarWeek, BiCommentError, BiUserPlus } from 'react-icons/bi'
 import { BiCheckDouble } from 'react-icons/bi';
 import { FiUserPlus } from 'react-icons/fi';
+import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
     return (
@@ -18,35 +19,35 @@ const Sidebar = () => {
                 <p className="sidebar__user--text sidebar__user--designation">IT Manager</p>
             </div>
             <ul className="sidebar__list">
-                <li className="sidebar__link">
+                <NavLink to="/" className="sidebar__link" >
                     <AiOutlineHome className="sidebar__link-icon" />
                     <span>Home</span>
-                </li>
-                <li className="sidebar__link">
+                </NavLink>
+                <NavLink to="/due" className="sidebar__link" activeClassName="sidebar__active">
                     <BiCalendarWeek className="sidebar__link-icon" />
                     <span>Due Today</span>
-                </li>
-                <li className="sidebar__link">
+                </NavLink>
+                <NavLink to="overdue" className="sidebar__link" activeClassName="sidebar__active">
                     <BiCommentError className="sidebar__link-icon" />
                     <span>Overdue</span>
-                </li>
-                <li className="sidebar__link">
+                </NavLink>
+                <NavLink to="resolved" className="sidebar__link" activeClassName="sidebar__active">
                     <BiCheckDouble className="sidebar__link-icon" />
                     <span>Resolved Tickets</span>
-                </li>
-                <li className="sidebar__link">
+                </NavLink>
+                <NavLink to="unassigned" className="sidebar__link" activeClassName="sidebar__active">
                     <CgAssign className="sidebar__link-icon" />
                     <span>Unassigned Tickets</span>
-                </li>
-                <li className="sidebar__link">
-                    <BiCommentError className="sidebar__link-icon" />
-                    <span>Unresolved Tickets</span>
-                </li>
-                <li className="sidebar__link">
+                </NavLink>
+                <NavLink to="/completed" className="sidebar__link" activeClassName="sidebar__active">
+                    <BiCheckDouble className="sidebar__link-icon" />
+                    <span>Completed </span>
+                </NavLink>
+                <li className="sidebar__link" activeClassName="sidebar__active">
                     <FiUserPlus className="sidebar__link-icon" />
                     <span>Register Staff</span>
                 </li>
-                <li className="sidebar__link">
+                <li className="sidebar__link" activeClassName="sidebar__active">
                     <BiUserPlus className="sidebar__link-icon" />
                     <span>Register ICT Staff</span>
                 </li>

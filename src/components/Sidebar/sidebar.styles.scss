@@ -49,6 +49,9 @@
         padding: .5rem;
         padding-left: 2rem;
         margin-bottom: .7rem;
+        color: $color-white;
+        display: block;
+        text-decoration: none;
 
         & span {
             font-size: 1.8rem;
@@ -62,6 +65,11 @@
     &__link-icon {
         margin-right: 1rem;
         font-size: 1.6rem;
+    }
+
+    &__active {
+        background-color: $color-white;
+        color: $text-color;
     }
 }
 

@@ -1,12 +1,10 @@
 import React from 'react';
 import './DashboardHome.styles.scss';
 
-import { CgAssign } from 'react-icons/cg'
 import { BiCalendarWeek, BiCommentError, BiTask } from 'react-icons/bi';
 import { BiCheckDouble } from 'react-icons/bi';
 import { MdAssignmentInd } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import { BsListTask } from 'react-icons/bs';
 
 const DashboardHome = () => {
     return (
