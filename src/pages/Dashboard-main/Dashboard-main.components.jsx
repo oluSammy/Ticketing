@@ -6,6 +6,7 @@ import DueToday from './../DueToday/DueToday.component';
 import Overdue from './../Overdue/Overdue.component';
 import Resolved from './../Resolved/Resolved.component';
 import Unassigned from './../Unassigned/Unassigned.component';
+import Completed from './../Completed/Completed.component';
 
 const DashboardMain = () => {
     return (
@@ -16,6 +17,7 @@ const DashboardMain = () => {
                 <Route exact path="/overdue" component={Overdue} />
                 <Route exact path="/resolved" component={Resolved} />
                 <Route exact path="/unassigned" component={Unassigned} />
+                <Route exact path="/completed" component={Completed} />
             </Switch>
         </div>
     )

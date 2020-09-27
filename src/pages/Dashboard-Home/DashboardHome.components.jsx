@@ -40,13 +40,13 @@ const DashboardHome = () => {
                     </div>
                     <div className="ticket-box__number">12</div>
                 </Link>
-                <div className="ticket-box">
+                <Link to="/completed" className="ticket-box">
                     <div className="ticket-box__header">
                         <div className="ticket-box__title">Completed</div>
                         <BiTask className="ticket-box__icon" style={{fill: 'green'}} />
                     </div>
                     <div className="ticket-box__number">12</div>
-                </div>
+                </Link>
             </div>
         </div>
     )
