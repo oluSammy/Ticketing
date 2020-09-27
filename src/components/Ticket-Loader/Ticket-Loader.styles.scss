@@ -1,0 +1,65 @@
+@import '../../sass/abstracts/variables';
+
+.ticket-loader {
+    background-color: #FFF;
+    padding: 1rem;
+    border-radius: .7rem;
+    box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);
+
+    &__header {
+        display: flex;
+        align-items: center;
+    }
+
+    &__status {
+        padding: 1rem 5rem;
+        margin-right: auto;
+    }
+
+    &__assigned {
+        padding: .4rem 3rem;
+    }
+
+    &__custom {
+        background-color: $color-grey-light-2;
+    }
+
+    &__title {
+        padding: .8rem 9rem;
+        width: 75%;
+        margin-top: 1rem;
+    }
+
+    &__container {
+        margin-top: 1rem;
+
+    }
+
+    &__content {
+        padding: .4rem 9rem;
+        width: 90%;
+        margin-bottom: .3rem;
+    }
+
+    &__raised {
+        padding: .8rem 5rem;
+        margin-top: 1rem;
+        width: 30%;
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+    }
+
+    &__created {
+        padding: .6rem 4rem;
+        margin-top: 1rem;
+        width: 45%;
+        margin-right: auto;
+    }
+
+    &__date {
+        padding: .4rem 4rem;
+    }
+}
