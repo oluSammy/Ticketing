@@ -43,10 +43,10 @@ const Sidebar = () => {
                     <BiCheckDouble className="sidebar__link-icon" />
                     <span>Completed </span>
                 </NavLink>
-                <li className="sidebar__link" activeClassName="sidebar__active">
+                <NavLink to="/register-staff" className="sidebar__link" activeClassName="sidebar__active">
                     <FiUserPlus className="sidebar__link-icon" />
                     <span>Register Staff</span>
-                </li>
+                </NavLink>
                 <li className="sidebar__link" activeClassName="sidebar__active">
                     <BiUserPlus className="sidebar__link-icon" />
                     <span>Register ICT Staff</span>
