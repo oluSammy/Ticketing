@@ -9,6 +9,7 @@ import Unassigned from './../Unassigned/Unassigned.component';
 import Completed from './../Completed/Completed.component';
 import RegisterStaff from './../RegisterStaff/RegisterStaff.component';
 import RegisterICT from '../RegisterICT/RegisterICT.component';
+import NewTask from './../New-Task/NewTask.component';
 
 const DashboardMain = () => {
     return (
@@ -22,6 +23,7 @@ const DashboardMain = () => {
                 <Route exact path="/completed" component={Completed} />
                 <Route exact path="/register-staff" component={RegisterStaff} />
                 <Route exact path="/register-ict" component={RegisterICT} />
+                <Route exact path="/new-task" component={NewTask} />
             </Switch>
         </div>
     )

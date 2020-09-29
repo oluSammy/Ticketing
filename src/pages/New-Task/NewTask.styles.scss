@@ -1,0 +1,61 @@
+@import '../../sass/abstracts/variables';
+
+.new-task {
+    padding: 1rem;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.4rem;
+        color: $color-primary;
+    }
+
+    &__heading {
+        font-size: 2.3rem;
+    }
+
+    &__icon {
+        font-size: 3rem;
+        margin-left: 2rem;
+    }
+
+    &__form {
+        margin-top: 1rem;
+        width: 60%;
+    }
+
+    &__form-group {
+        display: grid;
+        grid-template-columns: 15rem 1fr;
+
+        margin-bottom: 2rem;
+    }
+
+    &__label {
+        font-size: 2rem;
+        color: $text-color;
+    }
+
+    &__input {
+        border: none;
+        box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+        border-radius: .4rem;
+    }
+
+    &__btn {
+        color: $color-white;
+        padding: .8rem 4rem;
+        background-color: $color-primary-dark;
+        font-size: 1.8rem;
+        font-weight: 600;
+        border: 1px solid $color-white;
+        border-radius: .4rem;
+        cursor: pointer;
+        transition: all .1s;
+        margin-top: 1.4rem;
+
+        &:hover {
+            transform: translateY(-2px);
+        }
+    }
+}

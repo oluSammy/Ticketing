@@ -7,6 +7,7 @@ import { BiCalendarWeek, BiCommentError, BiUserPlus } from 'react-icons/bi'
 import { BiCheckDouble } from 'react-icons/bi';
 import { FiUserPlus } from 'react-icons/fi';
 import { NavLink } from 'react-router-dom';
+import { MdAddCircleOutline } from 'react-icons/md';
 
 const Sidebar = () => {
     return (
@@ -22,6 +23,10 @@ const Sidebar = () => {
                 <NavLink to="/" className="sidebar__link" >
                     <AiOutlineHome className="sidebar__link-icon" />
                     <span>Home</span>
+                </NavLink>
+                <NavLink to="/new-task" className="sidebar__link" activeClassName="sidebar__active">
+                    <MdAddCircleOutline className="sidebar__link-icon" />
+                    <span>New Task</span>
                 </NavLink>
                 <NavLink to="/due" className="sidebar__link" activeClassName="sidebar__active">
                     <BiCalendarWeek className="sidebar__link-icon" />
