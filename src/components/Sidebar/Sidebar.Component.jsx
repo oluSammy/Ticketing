@@ -47,10 +47,10 @@ const Sidebar = () => {
                     <FiUserPlus className="sidebar__link-icon" />
                     <span>Register Staff</span>
                 </NavLink>
-                <li className="sidebar__link" activeClassName="sidebar__active">
+                <NavLink to="register-ict" className="sidebar__link" activeClassName="sidebar__active">
                     <BiUserPlus className="sidebar__link-icon" />
                     <span>Register ICT Staff</span>
-                </li>
+                </NavLink>
             </ul>
         </div>
     )

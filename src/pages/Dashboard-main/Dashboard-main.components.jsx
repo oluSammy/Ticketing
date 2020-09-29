@@ -8,6 +8,7 @@ import Resolved from './../Resolved/Resolved.component';
 import Unassigned from './../Unassigned/Unassigned.component';
 import Completed from './../Completed/Completed.component';
 import RegisterStaff from './../RegisterStaff/RegisterStaff.component';
+import RegisterICT from '../RegisterICT/RegisterICT.component';
 
 const DashboardMain = () => {
     return (
@@ -20,6 +21,7 @@ const DashboardMain = () => {
                 <Route exact path="/unassigned" component={Unassigned} />
                 <Route exact path="/completed" component={Completed} />
                 <Route exact path="/register-staff" component={RegisterStaff} />
+                <Route exact path="/register-ict" component={RegisterICT} />
             </Switch>
         </div>
     )
