@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { asyncGetUser } from '../../Redux/User/user.actions';
 import { selectUserDetail } from '../../Redux/User/user.selectors';
 import { selectCurrentUser } from './../../Redux/User/user.selectors';
+import { createStructuredSelector } from 'reselect';
 import Swal from 'sweetalert2';
 
 const LoginPage = ({ currentUser }) => {
@@ -101,9 +102,9 @@ const mapDispatchToProps = dispatch => ({
     getUserDetails: id => dispatch(asyncGetUser(id))
 });
 
-const mapStateToProps = state => ({
-    userDetail: selectUserDetail(state),
-    currentUser: selectCurrentUser(state)
+const mapStateToProps = createStructuredSelector({
+    userDetail: selectUserDetail,
+    currentUser: selectCurrentUser
 });
 
 export default connect(mapStateToProps, mapDispatchToProps) (LoginPage);

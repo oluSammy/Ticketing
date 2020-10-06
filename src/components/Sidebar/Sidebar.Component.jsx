@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './sidebar.styles.scss';
 import { GrUserManager } from 'react-icons/gr';
 import { AiOutlineHome } from 'react-icons/ai';
@@ -8,16 +8,33 @@ import { BiCheckDouble } from 'react-icons/bi';
 import { FiUserPlus } from 'react-icons/fi';
 import { NavLink } from 'react-router-dom';
 import { MdAddCircleOutline } from 'react-icons/md';
+import { connect } from 'react-redux';
+import { selectCurrentUser, selectIsGettingUserDetail, selectUserDetail } from './../../Redux/User/user.selectors';
+import { asyncGetUser } from '../../Redux/User/user.actions';
+import { createStructuredSelector } from 'reselect';
 
-const Sidebar = () => {
+const Sidebar = ({ currentUser, getUserDetails,isGettingUser, userDetail  }) => {
+
+    useEffect(() => {
+        (async () => {
+            if (currentUser) {await getUserDetails(currentUser.uid)}
+        }) ()
+    }, [getUserDetails, currentUser]);
+
     return (
         <div className="sidebar">
             <div className="sidebar__user">
                 <div className="sidebar__user--bg">
                     <GrUserManager className="sidebar__user--icon"/>
                 </div>
-                <p className="sidebar__user--text sidebar__user--name">Aloye Israel</p>
-                <p className="sidebar__user--text sidebar__user--designation">IT Manager</p>
+                {isGettingUser ?
+                    <div style={{textAlign: 'center'}}> * </div> :
+                    userDetail &&
+                    <div>
+                        <p className="sidebar__user--text sidebar__user--name">{userDetail.designation}</p>
+                        <p className="sidebar__user--text sidebar__user--designation">{userDetail.surname} {userDetail.firstName}</p>
+                    </div>
+                }
             </div>
             <ul className="sidebar__list">
                 <NavLink to="/" className="sidebar__link" >
@@ -61,4 +78,14 @@ const Sidebar = () => {
     )
 }
 
-export default Sidebar;
+const mapDispatchToProps = dispatch => ({
+    getUserDetails: uid => dispatch(asyncGetUser(uid))
+})
+
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+    isGettingUser: selectIsGettingUserDetail,
+    userDetail: selectUserDetail
+})
+
+export default connect(mapStateToProps, mapDispatchToProps) (Sidebar);
