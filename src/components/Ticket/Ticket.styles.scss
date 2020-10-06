@@ -6,6 +6,7 @@
     border-radius: .7rem;
     box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);
     cursor: pointer;
+    text-decoration: none;
 
     &__header {
         display: flex;
@@ -24,6 +25,22 @@
     &__assigned-to {
         display: flex;
         align-items: center;
+    }
+
+    &__unassigned {
+        font-size: 1.4rem;
+        color: red;
+    }
+
+    &__btn {
+        background-color: $color-primary;
+        color: $color-white;
+        padding: .3rem 1rem;
+        border: none;
+        cursor: pointer;
+        border-radius: .3rem;
+        text-transform: capitalize;
+        box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
     }
 
     &__symbol {

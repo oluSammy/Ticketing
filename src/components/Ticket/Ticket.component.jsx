@@ -1,9 +1,10 @@
 import React from 'react';
 import './Ticket.styles.scss';
+import { Link } from 'react-router-dom';
 
 const Ticket = () => {
     return (
-        <div className="ticket" >
+        <Link to="/ticket/myTicket" className="ticket" onClick={() => console.log('Hello')} >
             <div className="ticket__header">
                 <h4 className="ticket__status">Due Today</h4>
                 <div className="ticket__assigned-to">
@@ -22,7 +23,7 @@ const Ticket = () => {
                 <h5 className="ticket__created">Created 19 days ago</h5>
                 <h6 className="ticket__assigned">Overdue by 12 days</h6>
             </div>
-        </div>
+        </Link>
     )
 }
 

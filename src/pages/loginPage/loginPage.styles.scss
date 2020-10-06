@@ -35,13 +35,11 @@
 
     &__form-group {
         margin-bottom: 3rem;
-        display: flex;
-        justify-content: center;
         position: relative;
     }
 
     &__form-input {
-        width: 80%;
+        width: 100%;
         padding: .7rem 3rem;
         border-radius: .5rem;
         border: 1px solid $color-grey-dark;
@@ -62,14 +60,14 @@
 
     &__icon {
         position: absolute;
-        left: 5rem;
+        left: 1rem;
         top: 1rem;
         font-size: 1.2rem;
         color: $color-primary
     }
 
     &__submit {
-        padding: .6rem 6rem;
+        padding: 1rem 8rem;
         background-color: $color-primary-dark;
         color: $color-white;
         border: none;
@@ -89,6 +87,12 @@
         font-size: 1.2rem;
         text-decoration: underline;
         cursor: pointer;
+    }
+
+    &__errMsg {
+        font-size: 1.2rem;
+        margin-top: .4rem;
+        color: red;
     }
 
 }

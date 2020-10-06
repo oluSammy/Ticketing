@@ -5,11 +5,19 @@ import { BiCalendarWeek, BiCommentError, BiTask } from 'react-icons/bi';
 import { BiCheckDouble } from 'react-icons/bi';
 import { MdAssignmentInd } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import { AiOutlineAppstoreAdd } from 'react-icons/ai';
 
 const DashboardHome = () => {
     return (
         <div className="dashboard-home">
             <div className="ticket-box-container">
+                <Link to="/new-task" className="ticket-box">
+                    <div className="ticket-box__header">
+                        <div className="ticket-box__title">New Task</div>
+                        <AiOutlineAppstoreAdd className="ticket-box__icon" style={{fill: 'maroon'}}/>
+                    </div>
+                    <div className="ticket-box__number">&#10021;</div>
+                </Link>
                 <Link to="/due" className="ticket-box">
                     <div className="ticket-box__header">
                         <div className="ticket-box__title">Due Today</div>

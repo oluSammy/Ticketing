@@ -1,0 +1,48 @@
+@import '../../sass/abstracts/variables';
+
+.ticket-page {
+    padding: 2rem;
+
+    &__header {
+        display: flex;
+        font-size: 3rem;
+        color: $color-primary;
+
+        &-icon {
+            margin-right: 1rem;
+        }
+    }
+
+    &__content {
+        display: grid;
+        grid-template-columns: 15rem .6fr;
+        margin-top: 2rem;
+    }
+
+    &__label {
+        font-size: 2rem;
+        color: $text-color;
+    }
+
+    &__key {
+        font-size: 1.7rem;
+    }
+
+    &__select {
+        width: 15rem;
+        padding: .3rem 1rem;
+        margin-right: 3rem;
+    }
+
+    &__btn {
+        background-color: $color-primary-dark;
+        padding: .7rem 3rem;
+        border: none;
+        color: $color-white;
+        font-weight: 600;
+        cursor: pointer;
+        border-radius: .4rem;
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+
+    }
+}

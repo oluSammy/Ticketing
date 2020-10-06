@@ -24,12 +24,16 @@ const NewTask = () => {
                 </div>
                 <div className="new-task__form-group">
                     <label htmlFor="assign" className="new-task__label">Assign To:</label>
-                    <select name="assign" id="assign" className="new-task__inp  ut">
+                    <select name="assign" id="assign" className="new-task__input">
                         <option value="test ICT">test ict</option>
                         <option value="test ICT 1">test ict 1</option>
                         <option value="test ICT 2">test ict 2</option>
                         <option value="test ICT 3">test ict 3</option>
                     </select>
+                </div>
+                <div className="new-task__form-group">
+                    <label htmlFor="title" className="new-task__label">Deadline:</label>
+                    <input className="new-task__input" type="date" name="new-task__date" id="new-task__date"/>
                 </div>
                 <div className="new-task__form-group">
                     <label htmlFor="title" className="new-task__label">Title:</label>
