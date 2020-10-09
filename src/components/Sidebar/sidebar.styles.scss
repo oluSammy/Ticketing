@@ -30,7 +30,7 @@
         }
 
         &--name {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             margin-top: .4rem;
         }
 
@@ -41,7 +41,7 @@
 
     &__list {
         list-style-type: none;
-        margin-top: 1.4rem;
+        margin-top: 1rem;
     }
 
     &__link {
@@ -49,7 +49,7 @@
         cursor: pointer;
         padding: .5rem;
         padding-left: 2rem;
-        margin-bottom: .7rem;
+        margin-bottom: .2rem;
         color: $color-white;
         display: block;
         text-decoration: none;
@@ -65,7 +65,7 @@
 
     &__link-icon {
         margin-right: 1rem;
-        font-size: 1.6rem;
+        font-size: 1.4rem;
     }
 
     &__active {

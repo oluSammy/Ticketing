@@ -11,6 +11,7 @@ import RegisterStaff from './../RegisterStaff/RegisterStaff.component';
 import RegisterICT from '../RegisterICT/RegisterICT.component';
 import NewTask from './../New-Task/NewTask.component';
 import TicketPage from './../Ticket-page/TicketPage.component';
+import Uncompleted from './../Uncompleted/Uncompleted.component';
 
 const DashboardMain = () => {
     return (
@@ -22,6 +23,7 @@ const DashboardMain = () => {
                 <Route exact path="/resolved" component={Resolved} />
                 <Route exact path="/unassigned" component={Unassigned} />
                 <Route exact path="/completed" component={Completed} />
+                <Route exact path="/uncompleted" component={Uncompleted} />
                 <Route exact path="/register-staff" component={RegisterStaff} />
                 <Route exact path="/register-ict" component={RegisterICT} />
                 <Route exact path="/new-task" component={NewTask} />

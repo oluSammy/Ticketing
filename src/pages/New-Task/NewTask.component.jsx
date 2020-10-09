@@ -40,17 +40,17 @@ const NewTask = ({ currentUser, userDetail, addTask, isAddingTickets }) => {
                 <div className="new-task__form-group">
                     <label htmlFor="name" className="new-task__label">Name:</label>
                     <input type="text" className="new-task__input" id="name" name="name"
-                    readOnly value={ticket.name} required />
+                    readOnly value={ticket.name} required onChange={handleChange} />
                 </div>
                 <div className="new-task__form-group">
                     <label htmlFor="email" className="new-task__label">Email:</label>
                     <input type="email" className="new-task__input" id="email" name="email"
-                    readOnly value={ticket.email} required />
+                    readOnly value={ticket.email} required onChange={handleChange} />
                 </div>
                 <div className="new-task__form-group">
                     <label htmlFor="designation" className="new-task__label">Designation:</label>
                     <input type="text" className="new-task__input" id="designation" name="designation"
-                    readOnly value={ticket.designation} required />
+                    readOnly value={ticket.designation} required onChange={handleChange} />
                 </div>
                 <div className="new-task__form-group">
                     <label htmlFor="assign" className="new-task__label">Assign To:</label>
@@ -62,20 +62,20 @@ const NewTask = ({ currentUser, userDetail, addTask, isAddingTickets }) => {
                         <option value="test ICT 3">test ict 3</option>
                     </select>
                 </div>
-                <div className="new-task__form-group" onChange={handleChange}>
+                <div className="new-task__form-group">
                     <label htmlFor="title" className="new-task__label">Deadline:</label>
                     <input className="new-task__input" type="date" name="deadline" id="deadline" min={getDateFormat()}
-                    required value={ticket.deadline} />
+                    required value={ticket.deadline} onChange={handleChange} />
                 </div>
-                <div className="new-task__form-group" onChange={handleChange}>
+                <div className="new-task__form-group">
                     <label htmlFor="title" className="new-task__label">Title:</label>
                     <input type="text" className="new-task__input" id="title" name="title"
-                    required value={ticket.title} />
+                    required value={ticket.title} onChange={handleChange} />
                 </div>
-                <div className="new-task__form-group" onChange={handleChange}>
+                <div className="new-task__form-group">
                     <label htmlFor="task" className="new-task__label">Task</label>
                     <textarea className="new-task__input" name="task" id="task" cols="30" rows="4" required value={ticket.task}
-                    style={{padding: '1rem', fontSize: '1.9rem'}} />
+                    style={{padding: '1rem', fontSize: '1.9rem'}} onChange={handleChange} />
                 </div>
                 {isAddingTickets ?
                 <input type="submit" disabled={true} value="Submit" className="new-task__btn"

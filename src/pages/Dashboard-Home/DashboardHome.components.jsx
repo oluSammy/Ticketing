@@ -2,7 +2,7 @@ import React from 'react';
 import './DashboardHome.styles.scss';
 
 import { BiCalendarWeek, BiCommentError, BiTask } from 'react-icons/bi';
-import { BiCheckDouble } from 'react-icons/bi';
+import { BiCheckDouble, BiMessageAltError } from 'react-icons/bi';
 import { MdAssignmentInd } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { AiOutlineAppstoreAdd } from 'react-icons/ai';
@@ -22,6 +22,13 @@ const DashboardHome = () => {
                     <div className="ticket-box__header">
                         <div className="ticket-box__title">Due Today</div>
                         <BiCalendarWeek className="ticket-box__icon"/>
+                    </div>
+                    <div className="ticket-box__number">12</div>
+                </Link>
+                <Link to="/uncompleted" className="ticket-box">
+                    <div className="ticket-box__header">
+                        <div className="ticket-box__title">Uncompleted</div>
+                        <BiMessageAltError className="ticket-box__icon" style={{fill: '#b71c1c '}} />
                     </div>
                     <div className="ticket-box__number">12</div>
                 </Link>

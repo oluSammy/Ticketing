@@ -1,7 +1,7 @@
 import { BiCheckDouble } from 'react-icons/bi';
 import React from 'react';
 import './Resolved.styles.scss';
-import Ticket from '../../components/Ticket/Ticket.component';
+// import Ticket from '../../components/Ticket/Ticket.component';
 
 
 const Resolved = () => {
@@ -12,10 +12,10 @@ const Resolved = () => {
                 <BiCheckDouble className="overdue__icon" />
             </div>
             <div className="tickets__container">
+                {/* <Ticket />
                 <Ticket />
                 <Ticket />
-                <Ticket />
-                <Ticket />
+                <Ticket /> */}
             </div>
         </div>
     )

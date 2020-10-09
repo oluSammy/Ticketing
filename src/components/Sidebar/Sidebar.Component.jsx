@@ -3,7 +3,7 @@ import './sidebar.styles.scss';
 import { GrUserManager } from 'react-icons/gr';
 import { AiOutlineHome } from 'react-icons/ai';
 import { CgAssign } from 'react-icons/cg'
-import { BiCalendarWeek, BiCommentError, BiUserPlus } from 'react-icons/bi'
+import { BiCalendarWeek, BiCommentError, BiUserPlus, BiMessageAltError } from 'react-icons/bi'
 import { BiCheckDouble } from 'react-icons/bi';
 import { FiUserPlus } from 'react-icons/fi';
 import { NavLink } from 'react-router-dom';
@@ -64,6 +64,10 @@ const Sidebar = ({ currentUser, getUserDetails,isGettingUser, userDetail  }) => 
                 <NavLink to="/completed" className="sidebar__link" activeClassName="sidebar__active">
                     <BiCheckDouble className="sidebar__link-icon" />
                     <span>Completed </span>
+                </NavLink>
+                <NavLink to="/uncompleted" className="sidebar__link" activeClassName="sidebar__active">
+                    <BiMessageAltError className="sidebar__link-icon" />
+                    <span>Uncompleted </span>
                 </NavLink>
                 <NavLink to="/register-staff" className="sidebar__link" activeClassName="sidebar__active">
                     <FiUserPlus className="sidebar__link-icon" />

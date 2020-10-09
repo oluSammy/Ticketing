@@ -1,0 +1,23 @@
+export const timeStampToDate = dateObj => {
+    let ts = dateObj.seconds * 1000;
+    const newDateObj = new Date(ts)
+    const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
+    const months = ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    return(`${daysOfWeek[newDateObj.getDay()]}, ${newDateObj.getDate()} ${months[newDateObj.getMonth()]} ${newDateObj.getFullYear()}`);
+}
+
+export const dateBeforeDeadline = dateObj => {
+    let today = new Date();
+    const deadline = new Date(dateObj.seconds * 1000);
+    const difference = deadline.getTime() - today.getTime();
+    const daysLeft = (Math.ceil(difference/ (1000 * 3600 * 24)))
+    console.log(daysLeft < 1 ? "Today"  : `Deadline in ${daysLeft}`);
+    console.log(daysLeft);
+    if(daysLeft === 0)  {
+        return "Deadline=> Today"
+    } else if(daysLeft < 0 ) {
+        return `Overdue=> ${+daysLeft} days ago`
+    } else {
+        return `Deadline=> ${daysLeft} days left`;
+    }
+}

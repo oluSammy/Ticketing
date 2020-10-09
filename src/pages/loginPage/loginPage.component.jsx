@@ -22,7 +22,6 @@ const LoginPage = ({ currentUser }) => {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        console.log(userCredentials);
         setUserCredentials({ email: '', password: '' });
         try {
             setIsSigningIn(true);

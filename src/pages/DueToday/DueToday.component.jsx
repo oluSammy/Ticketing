@@ -1,7 +1,7 @@
 import React from 'react';
 import './DueToday.styles.scss';
 import { BiCalendarWeek } from 'react-icons/bi';
-import Ticket from '../../components/Ticket/Ticket.component';
+// import Ticket from '../../components/Ticket/Ticket.component';
 
 const DueToday = () => {
     return (
@@ -11,12 +11,12 @@ const DueToday = () => {
                 <BiCalendarWeek className="due-today__heading-icon" />
             </div>
             <div className="tickets__container">
+                {/* <Ticket />
                 <Ticket />
                 <Ticket />
                 <Ticket />
                 <Ticket />
-                <Ticket />
-                <Ticket />
+                <Ticket /> */}
             </div>
         </div>
     )
