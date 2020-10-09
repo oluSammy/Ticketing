@@ -10,13 +10,11 @@ export const dateBeforeDeadline = dateObj => {
     let today = new Date();
     const deadline = new Date(dateObj.seconds * 1000);
     const difference = deadline.getTime() - today.getTime();
-    const daysLeft = (Math.ceil(difference/ (1000 * 3600 * 24)))
-    console.log(daysLeft < 1 ? "Today"  : `Deadline in ${daysLeft}`);
-    console.log(daysLeft);
+    const daysLeft = (Math.ceil(difference/ (1000 * 3600 * 24)));
     if(daysLeft === 0)  {
         return "Deadline=> Today"
     } else if(daysLeft < 0 ) {
-        return `Overdue=> ${+daysLeft} days ago`
+        return `Overdue=> ${Math.abs(daysLeft)} days ago`
     } else {
         return `Deadline=> ${daysLeft} days left`;
     }

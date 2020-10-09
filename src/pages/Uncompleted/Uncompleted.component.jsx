@@ -1,24 +1,30 @@
 import React, { useEffect } from 'react';
+import './Uncompleted.styles.scss'
 import { BiMessageAltError } from 'react-icons/bi';
 import Ticket from '../../components/Ticket/Ticket.component';
 import { connect } from 'react-redux';
-import { asyncGetUncompleted } from './../../Redux/Uncompleted/uncompleted.actions';
+import { asyncGetMoreUncompleted, asyncGetUncompleted } from './../../Redux/Uncompleted/uncompleted.actions';
 import { createStructuredSelector } from 'reselect';
 import { selectIsGettingUncompleted } from '../../Redux/Uncompleted/uncompleted.selectors';
-import { selectUncompletedTasks } from './../../Redux/Uncompleted/uncompleted.selectors';
+import { selectUncompletedTasks, selectUncompletedPrevDoc } from './../../Redux/Uncompleted/uncompleted.selectors';
 import TicketLoader from '../../components/Ticket-Loader/Ticket-Loader.component';
+import MoreButton from './../../components/MoreButton/MoreButton.component';
 
-const Uncompleted = ({ getUncompletedTasks, isGettingTasks, uncompletedTasks }) => {
+const Uncompleted = ({ getUncompletedTasks, isGettingTasks, uncompletedTasks, prevDoc, getMoreUncompleted }) => {
 
     useEffect(() => {
         const getTasks = async () => {
             await getUncompletedTasks();
         }
-        getTasks();
+        !uncompletedTasks && getTasks();
     }, [getUncompletedTasks]);
 
+    const getMoreTasks = async () => {
+        await getMoreUncompleted(prevDoc)
+    }
+
     return (
-        <div>
+        <div className="uncompleted">
             <div className="overdue__header">
                 <h3 className="overdue__heading">Uncompleted Tasks</h3>
                 <BiMessageAltError className="overdue__icon" />
@@ -34,19 +40,24 @@ const Uncompleted = ({ getUncompletedTasks, isGettingTasks, uncompletedTasks }) 
                 <div className="tickets__container">
                     {uncompletedTasks &&
                     uncompletedTasks.map(task => <Ticket key={task.id} ticket={task} type='uncompleted' />)}
+                    <div onClick={() => getMoreTasks()} style={{display: 'flex', justifyContent: 'center'}} >
+                        <MoreButton />
+                    </div>
                 </div>
             }
         </div>
-    )
+    );
 }
 
 const mapStateToProps = createStructuredSelector({
     isGettingTasks: selectIsGettingUncompleted,
-    uncompletedTasks: selectUncompletedTasks
+    uncompletedTasks: selectUncompletedTasks,
+    prevDoc: selectUncompletedPrevDoc
 })
 
 const mapDispatchToProps = dispatch => ({
-    getUncompletedTasks: () => dispatch(asyncGetUncompleted())
+    getUncompletedTasks: () => dispatch(asyncGetUncompleted()),
+    getMoreUncompleted: prevDoc => dispatch(asyncGetMoreUncompleted(prevDoc))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (Uncompleted)

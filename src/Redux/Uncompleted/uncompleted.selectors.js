@@ -11,3 +11,8 @@ export const selectIsGettingUncompleted = createSelector(
     [selectUncompleted],
     uncompleted => uncompleted.isGettingUncompleted
 );
+
+export const selectUncompletedPrevDoc = createSelector(
+    [selectUncompleted],
+    uncompleted => uncompleted.prevDoc
+);

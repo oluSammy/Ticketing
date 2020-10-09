@@ -9,7 +9,7 @@ import uncompletedReducer from './Uncompleted/uncompleted.reducer';
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['uncompleted']
+    whitelist: []
 }
 
 const rootReducer = combineReducers({

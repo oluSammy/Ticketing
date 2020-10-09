@@ -5,7 +5,8 @@ const INIT_START = {
     isGettingUncompleted: false,
     uncompletedErrMsg: '',
     prevDoc: null,
-    isGettingMoreTasks: false
+    isGettingMoreTasks: false,
+    isGettingMoreErrMsg: ''
 }
 
 const uncompletedReducer = (state=INIT_START, action) => {
@@ -31,6 +32,23 @@ const uncompletedReducer = (state=INIT_START, action) => {
             return {
                 ...state,
                 prevDoc: action.payload
+            }
+        case uncompletedActionTypes.GET_MORE_UNCOMPLETED_START:
+            return {
+                ...state,
+                isGettingMoreTasks: true
+            }
+        case uncompletedActionTypes.GET_MORE_UNCOMPLETED_SUCCESS:
+            return {
+                ...state,
+                isGettingMoreTasks: false,
+                uncompletedTasks: [...state.uncompletedTasks, ...action.payload]
+            }
+        case uncompletedActionTypes.GET_MORE_UNCOMPLETED_FAILURE:
+            return {
+                ...state,
+                isGettingMoreTasks: false,
+                isGettingMoreErrMsg: action.payload
             }
         default:
             return state
