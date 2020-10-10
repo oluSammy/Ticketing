@@ -4,6 +4,8 @@ import { persistReducer } from 'redux-persist';
 import userReducer from './User/user.reducer';
 import AddTicketReducer from './Add-Ticket/addTicket.reducer';
 import uncompletedReducer from './Uncompleted/uncompleted.reducer';
+import ticketReducer from './Ticket/Ticket.reducer';
+import dueReducer from './Due/due.reducer';
 
 
 const persistConfig = {
@@ -15,7 +17,9 @@ const persistConfig = {
 const rootReducer = combineReducers({
     user: userReducer,
     addTicket: AddTicketReducer,
-    uncompleted: uncompletedReducer
+    uncompleted: uncompletedReducer,
+    ticket: ticketReducer,
+    overdue: dueReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);

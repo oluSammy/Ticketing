@@ -10,7 +10,8 @@ const Ticket = ({ ticket, type }) => {
     return (
         <Link to={`/ticket/${ticket.id}`} className="ticket">
             <div className="ticket__header">
-                { type = 'uncompleted' && <h4 className="ticket__status">Uncompleted</h4> }
+                { type === 'uncompleted' && <h4 className="ticket__status">Uncompleted</h4> }
+                { type === 'overdue' && <h4 className="ticket__status">Overdue</h4> }
                 <div className="ticket__assigned-to">
                     {assigned ?
                         <span className="ticket__symbol" >Assigned to &rarr; </span>: ''

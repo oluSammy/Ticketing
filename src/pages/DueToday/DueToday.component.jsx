@@ -2,6 +2,7 @@ import React from 'react';
 import './DueToday.styles.scss';
 import { BiCalendarWeek } from 'react-icons/bi';
 // import Ticket from '../../components/Ticket/Ticket.component';
+import { connect } from 'react-redux';
 
 const DueToday = () => {
     return (
@@ -22,4 +23,8 @@ const DueToday = () => {
     )
 }
 
-export default DueToday;
+const mapDispatchToProps = dispatch => ({
+    // getDue
+})
+
+export default connect(null, mapDispatchToProps) (DueToday);

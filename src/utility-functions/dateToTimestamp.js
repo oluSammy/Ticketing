@@ -14,8 +14,8 @@ export const dateBeforeDeadline = dateObj => {
     if(daysLeft === 0)  {
         return "Deadline=> Today"
     } else if(daysLeft < 0 ) {
-        return `Overdue=> ${Math.abs(daysLeft)} days ago`
+        return `Overdue ~ ${Math.abs(daysLeft)} days ago`
     } else {
-        return `Deadline=> ${daysLeft} days left`;
+        return `Deadline ~ ${daysLeft} days left`;
     }
 }

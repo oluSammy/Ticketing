@@ -1,6 +1,7 @@
 @import '../../sass/abstracts/variables';
 
 .overdue {
+    min-height: 87vh;
 
     &__header {
         display: flex;

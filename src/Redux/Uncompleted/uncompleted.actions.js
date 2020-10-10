@@ -39,7 +39,7 @@ export const asyncGetUncompleted = () => {
         try {
             dispatch(getUncompletedStart());
             const uncompletedRef = firestore.collection('tickets').where('completed', '==', false)
-            .orderBy('deadline', 'asc').limit(9);
+            .orderBy('deadline').limit(9);
             uncompletedRef.onSnapshot(docSnapshot => {
                 const uncompletedATasks = [];
                 docSnapshot.docs.forEach(doc => uncompletedATasks.push({ id: doc.id, data: doc.data() }));
@@ -58,7 +58,7 @@ export const asyncGetMoreUncompleted = prevDoc => {
         try {
             dispatch(getMoreStart());
             const uncompletedRef = firestore.collection('tickets').where('completed', '==', false)
-            .orderBy('deadline', 'asc').startAfter(prevDoc).limit(9);
+            .orderBy('deadline').startAfter(prevDoc).limit(9);
             uncompletedRef.onSnapshot(docSnapshot => {
                 const uncompletedATasks = [];
                 docSnapshot.docs.forEach(doc => uncompletedATasks.push({ id: doc.id, data: doc.data() }));
