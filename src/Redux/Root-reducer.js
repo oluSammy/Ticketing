@@ -6,6 +6,7 @@ import AddTicketReducer from './Add-Ticket/addTicket.reducer';
 import uncompletedReducer from './Uncompleted/uncompleted.reducer';
 import ticketReducer from './Ticket/Ticket.reducer';
 import dueReducer from './Due/due.reducer';
+import dueTodayReducer from './Due-Today/dueToday.reducer';
 
 
 const persistConfig = {
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
     addTicket: AddTicketReducer,
     uncompleted: uncompletedReducer,
     ticket: ticketReducer,
-    overdue: dueReducer
+    overdue: dueReducer,
+    dueToday: dueTodayReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);

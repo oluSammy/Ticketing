@@ -6,11 +6,16 @@
 
     background-color: $color-primary-dark;
     color: $color-white;
-    padding: 1rem 10rem;
+    padding: 1.5rem 10rem;
 
     &__heading {
         margin-right: auto;
         font-weight: 300;
+    }
+
+    &__list {
+        display: flex;
+        align-items: center;
     }
 
     &__link {
@@ -20,6 +25,9 @@
         align-items: center;
         cursor: pointer;
         transition: all .1s;
+        margin-left: 2rem;
+        color: $color-white;
+        text-decoration: none;
 
         &:hover {
             text-decoration: underline;

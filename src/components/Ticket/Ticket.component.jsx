@@ -12,6 +12,7 @@ const Ticket = ({ ticket, type }) => {
             <div className="ticket__header">
                 { type === 'uncompleted' && <h4 className="ticket__status">Uncompleted</h4> }
                 { type === 'overdue' && <h4 className="ticket__status">Overdue</h4> }
+                { type === 'Due-Today' && <h4 className="ticket__status">Due Today</h4> }
                 <div className="ticket__assigned-to">
                     {assigned ?
                         <span className="ticket__symbol" >Assigned to &rarr; </span>: ''
