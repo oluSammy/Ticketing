@@ -7,8 +7,9 @@ import { createStructuredSelector } from 'reselect';
 import { selectCurrentTicket, selectIsGettingTicket } from '../../Redux/Ticket/Ticket.selectors';
 import { dateBeforeDeadline, timeStampToDate } from './../../utility-functions/dateToTimestamp';
 import Loader from 'react-loader-spinner';
+import { selectIctStaffs, selectIsGettingIctStaffs } from './../../Redux/ict-staff/ictStaff.selectors';
 
-const TicketPage = ({ getTicket, isGettingTicket , ticket }) => {
+const TicketPage = ({ getTicket, isGettingTicket , ticket, isGettingIctStaffs, ictStaffs }) => {
     let { id } = useParams();
 
     useEffect(() => {
@@ -64,11 +65,14 @@ const TicketPage = ({ getTicket, isGettingTicket , ticket }) => {
                     {ticket.assigned ?
                     <div className="ticket-page__key">{ticket.assignedTo}</div> :
                     <form className="ticket-page__key" >
-                        <select name="ticket-select" id="ticket-select" className="ticket-page__select">
-                            <option value="test-1">test-1</option>
-                            <option value="test-1">test-1</option>
-                            <option value="test-1">test-1</option>
-                            <option value="test-1">test-1</option>
+                        <select name="ticket-select" id="ticket-select" className="ticket-page__select" required>
+                            <option value="">Select Staff</option>
+                            {isGettingIctStaffs ?
+                            <option value="">loading</option>:
+                            ictStaffs && ictStaffs.map(staff =>
+                                <option id={staff.id}
+                                value={`${staff.data.firstName} ${staff.data.surname}`}>
+                                {`${staff.data.firstName} ${staff.data.surname}`}</option>)}
                         </select>
                         <input className="ticket-page__btn" type="submit"  value="Assign"/>
                     </form>}
@@ -91,7 +95,9 @@ const TicketPage = ({ getTicket, isGettingTicket , ticket }) => {
 
 const mapStateToProps = createStructuredSelector({
     isGettingTicket: selectIsGettingTicket,
-    ticket: selectCurrentTicket
+    ticket: selectCurrentTicket,
+    isGettingIctStaffs: selectIsGettingIctStaffs,
+    ictStaffs: selectIctStaffs
 })
 
 const mapDispatchToProps = dispatch => ({

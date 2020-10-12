@@ -17,10 +17,10 @@ const Uncompleted = ({ getUncompletedTasks, isGettingTasks, uncompletedTasks, pr
             await getUncompletedTasks();
         }
         !uncompletedTasks && getTasks();
-    }, [getUncompletedTasks]);
+    }, [getUncompletedTasks, uncompletedTasks]);
 
     const getMoreTasks = async () => {
-        await getMoreUncompleted(prevDoc)
+        await getMoreUncompleted(prevDoc);
     }
 
     return (

@@ -16,7 +16,7 @@ const Overdue = ({ getDueTasks, dueTasks, isGettingTasks, getMoreDueTasks, prevD
             !dueTasks && await getDueTasks();
         }
         getTasks();
-    }, [getDueTasks]);
+    }, [getDueTasks, dueTasks]);
 
     const getMoreTasks = async () => {
         await getMoreDueTasks(prevDoc)

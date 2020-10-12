@@ -49,15 +49,15 @@ const Sidebar = ({ currentUser, getUserDetails,isGettingUser, userDetail  }) => 
                     <BiCalendarWeek className="sidebar__link-icon" />
                     <span>Due Today</span>
                 </NavLink>
-                <NavLink to="overdue" className="sidebar__link" activeClassName="sidebar__active">
+                <NavLink to="/overdue" className="sidebar__link" activeClassName="sidebar__active">
                     <BiCommentError className="sidebar__link-icon" />
                     <span>Overdue</span>
                 </NavLink>
-                <NavLink to="resolved" className="sidebar__link" activeClassName="sidebar__active">
+                <NavLink to="/resolved" className="sidebar__link" activeClassName="sidebar__active">
                     <BiCheckDouble className="sidebar__link-icon" />
                     <span>Resolved Tickets</span>
                 </NavLink>
-                <NavLink to="unassigned" className="sidebar__link" activeClassName="sidebar__active">
+                <NavLink to="/unassigned" className="sidebar__link" activeClassName="sidebar__active">
                     <CgAssign className="sidebar__link-icon" />
                     <span>Unassigned Tickets</span>
                 </NavLink>
@@ -73,7 +73,7 @@ const Sidebar = ({ currentUser, getUserDetails,isGettingUser, userDetail  }) => 
                     <FiUserPlus className="sidebar__link-icon" />
                     <span>Register Staff</span>
                 </NavLink>
-                <NavLink to="register-ict" className="sidebar__link" activeClassName="sidebar__active">
+                <NavLink to="/register-ict" className="sidebar__link" activeClassName="sidebar__active">
                     <BiUserPlus className="sidebar__link-icon" />
                     <span>Register ICT Staff</span>
                 </NavLink>

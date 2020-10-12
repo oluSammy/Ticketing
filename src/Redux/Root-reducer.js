@@ -8,6 +8,7 @@ import ticketReducer from './Ticket/Ticket.reducer';
 import dueReducer from './Due/due.reducer';
 import dueTodayReducer from './Due-Today/dueToday.reducer';
 import ictReducer from './ict-staff/ictStaff.reducer';
+import unassignedReducer from './Unassigned/Unassigned.reducer';
 
 
 const persistConfig = {
@@ -23,7 +24,8 @@ const rootReducer = combineReducers({
     ticket: ticketReducer,
     overdue: dueReducer,
     dueToday: dueTodayReducer,
-    ictStaffs: ictReducer
+    ictStaffs: ictReducer,
+    unassigned: unassignedReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);

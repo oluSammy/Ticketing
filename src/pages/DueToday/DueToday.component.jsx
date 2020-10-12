@@ -17,7 +17,7 @@ const DueToday = ({ getDueToday, dueToday, isGettingDueToday, prevDoc, getMoreDu
             !dueToday && await getDueToday();
         }
         getTasks();
-    }, [getDueToday]);
+    }, [getDueToday, dueToday]);
 
     const getMoreTasks = async () => {
         await getMoreDueToday(prevDoc);
