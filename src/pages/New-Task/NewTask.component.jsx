@@ -7,8 +7,9 @@ import { selectCurrentUser, selectUserDetail } from './../../Redux/User/user.sel
 import { getDateFormat } from './../../utility-functions/dateConversion';
 import { asyncAddTicket } from './../../Redux/Add-Ticket/addTicket.actions';
 import { selectIsAddingTicket } from '../../Redux/Add-Ticket/addTicket.selectors';
+import { selectIsGettingIctStaffs, selectIctStaffs } from './../../Redux/ict-staff/ictStaff.selectors';
 
-const NewTask = ({ currentUser, userDetail, addTask, isAddingTickets }) => {
+const NewTask = ({ currentUser, userDetail, addTask, isAddingTickets, isGettingStaffs, ictStaffs }) => {
     const [ticket, setTicket] =
     useState({ name: '',  email: currentUser ? currentUser.email : '',
     designation: '', assign: '', deadline: '', title: '', task: '' });
@@ -57,9 +58,15 @@ const NewTask = ({ currentUser, userDetail, addTask, isAddingTickets }) => {
                     <select name="assign" id="assign" className="new-task__input"
                     onChange={handleChange} required value={ticket.assign}>
                         <option value="">select ICT Staff</option>
-                        <option value="test ICT 1">test ict 1</option>
+                        {/* <option value="test ICT 1">test ict 1</option>
                         <option value="test ICT 2">test ict 2</option>
-                        <option value="test ICT 3">test ict 3</option>
+                        <option value="test ICT 3">test ict 3</option> */}
+                        {isGettingStaffs ?
+                        <option value="">Loading</option> :
+                        ictStaffs && ictStaffs.map(staff =>
+                        <option id={staff.id}
+                        value={`${staff.data.firstName} ${staff.data.surname}`}>
+                        {`${staff.data.firstName} ${staff.data.surname}`}</option>)}
                     </select>
                 </div>
                 <div className="new-task__form-group">
@@ -89,7 +96,9 @@ const NewTask = ({ currentUser, userDetail, addTask, isAddingTickets }) => {
 const mapStateToProps = createStructuredSelector({
     currentUser: selectCurrentUser,
     userDetail: selectUserDetail,
-    isAddingTickets: selectIsAddingTicket
+    isAddingTickets: selectIsAddingTicket,
+    isGettingStaffs: selectIsGettingIctStaffs,
+    ictStaffs: selectIctStaffs
 });
 
 const mapDispatchTProps = dispatch => ({

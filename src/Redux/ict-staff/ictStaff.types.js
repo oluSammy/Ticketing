@@ -1,0 +1,5 @@
+export const ictStaffActionTypes = {
+    GET_STAFF_START: 'GET_STAFF_START',
+    GET_STAFF_SUCCESS: 'GET_STAFF_SUCCESS',
+    GET_STAFF_FAILURE: 'GET_STAFF_FAILURE',
+}

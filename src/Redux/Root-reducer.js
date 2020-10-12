@@ -7,12 +7,13 @@ import uncompletedReducer from './Uncompleted/uncompleted.reducer';
 import ticketReducer from './Ticket/Ticket.reducer';
 import dueReducer from './Due/due.reducer';
 import dueTodayReducer from './Due-Today/dueToday.reducer';
+import ictReducer from './ict-staff/ictStaff.reducer';
 
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: []
+    whitelist: ['ictStaffs']
 }
 
 const rootReducer = combineReducers({
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
     uncompleted: uncompletedReducer,
     ticket: ticketReducer,
     overdue: dueReducer,
-    dueToday: dueTodayReducer
+    dueToday: dueTodayReducer,
+    ictStaffs: ictReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);
