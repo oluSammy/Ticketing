@@ -40,9 +40,10 @@ const Uncompleted = ({ getUncompletedTasks, isGettingTasks, uncompletedTasks, pr
                 <div className="tickets__container">
                     {uncompletedTasks &&
                     uncompletedTasks.map(task => <Ticket key={task.id} ticket={task} type='uncompleted' />)}
+                    {prevDoc !== undefined &&
                     <div onClick={() => getMoreTasks()} style={{display: 'flex', justifyContent: 'center'}} >
                         <MoreButton />
-                    </div>
+                    </div>}
                 </div>
             }
         </div>

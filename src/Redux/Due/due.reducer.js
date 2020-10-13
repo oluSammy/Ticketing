@@ -28,23 +28,23 @@ const dueReducer = (state=INIT_STATE, action) => {
                 isGettingDue: false,
                 dueErrMsg: action.payload
             }
-        case dueActionTypes.SET_PREV_DOC:
+        case dueActionTypes.SET_DUE_PREV_DOC:
             return {
                 ...state,
                 prevDoc: action.payload
             }
-        case dueActionTypes.GET_MORE_START:
+        case dueActionTypes.GET_MORE_DUE_START:
             return {
                 ...state,
                 isGettingMore: true
             }
-        case dueActionTypes.GET_MORE_SUCCESS:
+        case dueActionTypes.GET_MORE_DUE_SUCCESS:
             return {
                 ...state,
                 isGettingMore: false,
                 due: [...state.due, ...action.payload]
             }
-        case dueActionTypes.GET_MORE_FAILURE:
+        case dueActionTypes.GET_MORE_DUE_FAILURE:
             return {
                 ...state,
                 isGettingMore: false,

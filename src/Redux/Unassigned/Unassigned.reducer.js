@@ -4,7 +4,9 @@ const INIT_STATE = {
     unassigned: null,
     isGettingUnassigned: false,
     unassignedErrMsg: '',
-    prevDoc: null
+    prevDoc: null,
+    isGettingMore: false,
+    getMoreErrMsg: ''
 }
 
 
@@ -27,10 +29,27 @@ const unassignedReducer = (state=INIT_STATE, action) => {
                 isGettingUnassigned: false,
                 unassignedErrMsg: action.payload
             }
-        case unassignedActionTypes.SET_PREV_DOC:
+        case unassignedActionTypes.SET_UNASSIGNED_PREV_DOC:
             return {
                 ...state,
                 prevDoc: action.payload
+            }
+        case unassignedActionTypes.GET_MORE_UNASSIGNED_START:
+            return {
+                ...state,
+                isGettingMore: true
+            }
+        case unassignedActionTypes.GET_MORE_UNASSIGNED_SUCCESS:
+            return {
+                ...state,
+                isGettingMore: false,
+                unassigned: [...state.unassigned, ...action.payload]
+            }
+        case unassignedActionTypes.GET_MORE_UNASSIGNED_FAILURE:
+            return {
+                ...state,
+                isGettingMore: false,
+                getMoreErrMsg: action.payload
             }
         default: return state;
     }

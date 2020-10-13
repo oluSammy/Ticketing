@@ -70,7 +70,7 @@ const TicketPage = ({ getTicket, isGettingTicket , ticket, isGettingIctStaffs, i
                             {isGettingIctStaffs ?
                             <option value="">loading</option>:
                             ictStaffs && ictStaffs.map(staff =>
-                                <option id={staff.id}
+                                <option key={staff.id}
                                 value={`${staff.data.firstName} ${staff.data.surname}`}>
                                 {`${staff.data.firstName} ${staff.data.surname}`}</option>)}
                         </select>

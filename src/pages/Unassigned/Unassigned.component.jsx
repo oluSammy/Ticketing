@@ -1,19 +1,25 @@
 import React, { useEffect } from 'react';
 import { MdAssignmentInd } from 'react-icons/md';
 import Ticket from '../../components/Ticket/Ticket.component';
-import { asyncGetUnassigned } from './../../Redux/Unassigned/Unassigned.actions';
+import { asyncGetMoreUnassigned, asyncGetUnassigned } from './../../Redux/Unassigned/Unassigned.actions';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectUnassignedTasks, selectIsGettingUnassigned } from '../../Redux/Unassigned/Unassigned.selectors';
+import { selectUnassignedTasks, selectIsGettingUnassigned, newUnassignedPrevDoc }
+from '../../Redux/Unassigned/Unassigned.selectors';
 import TicketLoader from '../../components/Ticket-Loader/Ticket-Loader.component';
+import MoreButton from './../../components/MoreButton/MoreButton.component';
 
-const Unassigned = ({ getUnassignedTasks, unassignedTasks, isGettingTasks  }) => {
+const Unassigned = ({ getUnassignedTasks, unassignedTasks, isGettingTasks, prevDoc, getMoreUnassigned }) => {
 
     useEffect(() => {
         (async () => {
             !unassignedTasks && await getUnassignedTasks();
         })()
     }, [getUnassignedTasks, unassignedTasks]);
+
+    const getMoreTasks = async () => {
+        await getMoreUnassigned(prevDoc);
+    }
 
     return (
         <div>
@@ -30,6 +36,10 @@ const Unassigned = ({ getUnassignedTasks, unassignedTasks, isGettingTasks  }) =>
                 </div>:
             <div className="tickets__container">
                 {unassignedTasks && unassignedTasks.map(task => <Ticket key={task.id} ticket={task} type={'unassigned'} />)}
+                {prevDoc !== undefined &&
+                <div onClick={() => getMoreTasks()} style={{display: 'flex', justifyContent: 'center'}} >
+                    <MoreButton />
+                </div>}
             </div>}
         </div>
     )
@@ -37,11 +47,13 @@ const Unassigned = ({ getUnassignedTasks, unassignedTasks, isGettingTasks  }) =>
 
 const mapStateToProps = createStructuredSelector({
     unassignedTasks: selectUnassignedTasks,
-    isGettingTasks: selectIsGettingUnassigned
+    isGettingTasks: selectIsGettingUnassigned,
+    prevDoc: newUnassignedPrevDoc
 })
 
 const mapDispatchToProps = dispatch => ({
-    getUnassignedTasks: () => dispatch(asyncGetUnassigned())
+    getUnassignedTasks: () => dispatch(asyncGetUnassigned()),
+    getMoreUnassigned: prevDoc => dispatch(asyncGetMoreUnassigned(prevDoc))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (Unassigned);

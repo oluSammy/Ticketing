@@ -16,7 +16,7 @@ const getDueTodayFailure = errMsg => ({
 });
 
 const setPrevDoc = prevDoc => ({
-    type: dueTodayActionTypes.SET_PREV_DOC,
+    type: dueTodayActionTypes.SET_DUE_TODAY_PREV_DOC,
     payload: prevDoc
 });
 
@@ -30,7 +30,7 @@ const getMoreDueSuccess = tasks => ({
 });
 
 const getMoreDueFailure = errMsg => ({
-    type: dueTodayActionTypes.GET_DUE_TODAY_FAILURE,
+    type: dueTodayActionTypes.GET_DUE_MORE_FAILURE,
     payload: errMsg
 });
 
@@ -41,7 +41,7 @@ export const asyncGetDueToday = () => {
             const startOfDay = new Date();
             startOfDay.setHours(0, 0, 0, 0);
             const ticketRef = firestore.collection('tickets').where('deadline', '==', startOfDay)
-            .orderBy('createdAt', 'desc').limit(20);
+            .orderBy('createdAt', 'desc').limit(10);
             ticketRef.onSnapshot(docSnapshot => {
                 let tasks = [];
                 docSnapshot.forEach(doc => {
@@ -64,7 +64,7 @@ export const asyncGetMorDueToday = prevDoc => {
             const startOfDay = new Date();
             startOfDay.setHours(0, 0, 0, 0);
             const ticketRef = firestore.collection('tickets').where('deadline', '==', startOfDay)
-            .orderBy('createdAt', 'desc').startAfter(prevDoc).limit(20);
+            .orderBy('createdAt', 'desc').startAfter(prevDoc).limit(10);
             ticketRef.onSnapshot(docSnapshot => {
                 let tasks = [];
                 docSnapshot.forEach(doc => {

@@ -28,7 +28,7 @@ const dueTodayReducer = (state=INIT_STATE, action) => {
                 isGettingDueToday: false,
                 dueTodayErrMsg: action.payload
             }
-        case dueTodayActionTypes.SET_PREV_DOC:
+        case dueTodayActionTypes.SET_DUE_TODAY_PREV_DOC:
             return {
                 ...state,
                 prevDoc: action.payload

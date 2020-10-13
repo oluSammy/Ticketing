@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import TicketLoader from './../../components/Ticket-Loader/Ticket-Loader.component';
 import { BiCommentError } from 'react-icons/bi';
 import './Overdue.styles.scss';
@@ -37,9 +37,10 @@ const Overdue = ({ getDueTasks, dueTasks, isGettingTasks, getMoreDueTasks, prevD
                 </div> :
                 <div className="tickets__container">
                     {dueTasks && dueTasks.map(task => <Ticket key={task.id} ticket={task} type={'overdue'} />)}
+                    {prevDoc !== undefined &&
                     <div onClick={() => getMoreTasks()} style={{display: 'flex', justifyContent: 'center'}} >
                         <MoreButton />
-                    </div>
+                    </div>}
                 </div>
             }
         </div>

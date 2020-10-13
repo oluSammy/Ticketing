@@ -11,3 +11,7 @@ export const selectIsGettingUnassigned = createSelector(
     [selectUnassigned],
     unassigned => unassigned.isGettingUnassigned
 );
+export const newUnassignedPrevDoc = createSelector(
+    [selectUnassigned],
+    unassigned => unassigned.prevDoc
+);

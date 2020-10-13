@@ -39,9 +39,10 @@ const DueToday = ({ getDueToday, dueToday, isGettingDueToday, prevDoc, getMoreDu
                 </div> :
                 <div className="tickets__container">
                 {dueToday && dueToday.map(task => <Ticket key={task.id} ticket={task} type={'Due-Today'} />)}
+                {prevDoc !== undefined &&
                 <div onClick={() => getMoreTasks()} style={{display: 'flex', justifyContent: 'center'}} >
                     <MoreButton />
-                </div>
+                </div>}
             </div>
             }
         </div>
