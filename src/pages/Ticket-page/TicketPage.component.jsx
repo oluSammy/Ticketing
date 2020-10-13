@@ -1,16 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './TicketPage.styles.scss';
+import { AiOutlineFileDone } from 'react-icons/ai';
+import { BiMessageSquareError } from 'react-icons/bi';
 import { connect } from 'react-redux';
-import { asyncGetTicket } from './../../Redux/Ticket/Ticket.actions';
+import { asyncAssignTicket, asyncGetTicket } from './../../Redux/Ticket/Ticket.actions';
 import { useParams } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentTicket, selectIsGettingTicket } from '../../Redux/Ticket/Ticket.selectors';
-import { dateBeforeDeadline, timeStampToDate } from './../../utility-functions/dateToTimestamp';
+import { dateBeforeDeadline, timeStampToDate, dateAfterCompletion } from './../../utility-functions/dateToTimestamp';
 import Loader from 'react-loader-spinner';
 import { selectIctStaffs, selectIsGettingIctStaffs } from './../../Redux/ict-staff/ictStaff.selectors';
+import { getDateFormat } from './../../utility-functions/dateConversion';
 
-const TicketPage = ({ getTicket, isGettingTicket , ticket, isGettingIctStaffs, ictStaffs }) => {
+const TicketPage = ({ getTicket, isGettingTicket , ticket, isGettingIctStaffs, ictStaffs, assignTicket }) => {
     let { id } = useParams();
+
+    const [staff, setStaff] = useState("");
+    const [deadline, setDeadline] = useState("");
 
     useEffect(() => {
         const getCurrentTicket = async () => {
@@ -18,6 +24,11 @@ const TicketPage = ({ getTicket, isGettingTicket , ticket, isGettingIctStaffs, i
         }
         getCurrentTicket();
     }, [getTicket, id]);
+
+    const assignStaff = async e => {
+        e.preventDefault();
+        await assignTicket(id, `${staff}`, deadline);
+    }
 
     return (
         <>
@@ -64,16 +75,27 @@ const TicketPage = ({ getTicket, isGettingTicket , ticket, isGettingIctStaffs, i
                     }
                     {ticket.assigned ?
                     <div className="ticket-page__key">{ticket.assignedTo}</div> :
-                    <form className="ticket-page__key" >
-                        <select name="ticket-select" id="ticket-select" className="ticket-page__select" required>
-                            <option value="">Select Staff</option>
-                            {isGettingIctStaffs ?
-                            <option value="">loading</option>:
-                            ictStaffs && ictStaffs.map(staff =>
-                                <option key={staff.id}
-                                value={`${staff.data.firstName} ${staff.data.surname}`}>
-                                {`${staff.data.firstName} ${staff.data.surname}`}</option>)}
-                        </select>
+                    <form className="ticket-page__key" onSubmit={assignStaff}
+                        style={{display: 'flex', flexDirection: 'column'}}
+                    >
+                        <div className="ticket-page__form-group">
+                            <label htmlFor="ticket-select">ICT Staff</label>
+                            <select onChange={e => setStaff(e.target.value)}
+                                name="ticket-select" id="ticket-select" className="ticket-page__select" required>
+                                <option value="">Select Staff</option>
+                                {isGettingIctStaffs ?
+                                <option value="">loading</option>:
+                                ictStaffs && ictStaffs.map(staff =>
+                                    <option key={staff.id}
+                                    value={`${staff.data.firstName} ${staff.data.surname}`}>
+                                    {`${staff.data.firstName} ${staff.data.surname}`}</option>)}
+                            </select>
+                        </div>
+                        <div className="ticket-page__form-group">
+                            <label htmlFor="ticket-deadline">Deadline</label>
+                            <input onChange={e => setDeadline(e.target.value)} required
+                            type="date" name="ticket-deadline" id="ticket-deadline" min={getDateFormat()}/>
+                        </div>
                         <input className="ticket-page__btn" type="submit"  value="Assign"/>
                     </form>}
                 </div>
@@ -88,6 +110,30 @@ const TicketPage = ({ getTicket, isGettingTicket , ticket, isGettingIctStaffs, i
                         <p className="ticket-page__key">{dateBeforeDeadline(ticket.deadline)}</p>
                     </div>
                 </div>
+                {ticket.completed &&
+                <div className="ticket-page__content">
+                    <h6 className="ticket-page__label">Completed:</h6>
+                    <div className="ticket-page__k" style={{fontFamily: 'sans-serif'}}>
+                        <p className="ticket-page__key">{timeStampToDate(ticket.completedOn)}</p>
+                        <p className="ticket-page__key">{dateAfterCompletion(ticket.completedOn)}</p>
+                    </div>
+                </div>}
+                {ticket.completed &&
+                <div className="ticket-page__content">
+                    <h6 className="ticket-page__label">Resolved?</h6>
+                    <div className="ticket-page__k" style={{fontFamily: 'sans-serif'}}>
+                        {ticket.resolved ?
+                        <div className="ticket-page__resolve">
+                            <h6 className="ticket-page__resolve-status">Resolved</h6>
+                            <AiOutlineFileDone className="ticket-page__resolve-icon ticket-page__resolve-done" />
+                        </div> :
+                        <div className="ticket-page__resolve">
+                            <h6 className="ticket-page__resolve-status">Unresolved</h6>
+                            <BiMessageSquareError className="ticket-page__resolve-icon ticket-page__resolve-err" />
+                            <button className="ticket-page__resolve-action">Mark As Resolved</button>
+                        </div>}
+                    </div>
+                </div>}
             </div>  }
         </>
     )
@@ -101,7 +147,8 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = dispatch => ({
-    getTicket: id => dispatch(asyncGetTicket(id))
+    getTicket: id => dispatch(asyncGetTicket(id)),
+    assignTicket: (id, staff, deadline) => dispatch(asyncAssignTicket(id, staff, deadline))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (TicketPage)

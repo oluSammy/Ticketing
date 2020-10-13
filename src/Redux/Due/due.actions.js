@@ -47,7 +47,6 @@ export const asyncGetDueTasks = () => {
                 docSnapshot.docs.forEach(doc => dueTasks.push({ id: doc.id, data: doc.data() }));
                 dispatch(getDueSuccess(dueTasks));
                 const lastDoc = docSnapshot.docs[docSnapshot.docs.length - 1];
-                console.log(lastDoc.data());
                 dispatch(setDuePrevDoc(lastDoc));
             });
         } catch (errMsg) {

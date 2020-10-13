@@ -2,7 +2,6 @@
 
 .ticket-page {
     padding: 2rem;
-    min-height: 87vh;
 
     &__header {
         display: flex;
@@ -35,6 +34,14 @@
         margin-right: 3rem;
     }
 
+    &__form-group {
+        margin-bottom: 1.3rem;
+
+        & label {
+            margin-right: 1rem;
+        }
+    }
+
     &__btn {
         background-color: $color-primary-dark;
         padding: .7rem 3rem;
@@ -44,6 +51,39 @@
         cursor: pointer;
         border-radius: .4rem;
         box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+        width: max-content;
+    }
 
+    &__resolve {
+        display: flex;
+        align-items: center;
+
+        &-status {
+            font-size: 1.5rem;
+            margin-right: 1.2rem;
+        }
+
+        &-icon {
+            font-size: 1.6rem;
+            margin-right: 1.2rem;
+        }
+
+        &-done {
+            color: green;
+        }
+
+        &-err {
+            color: red;
+        }
+
+        &-action {
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: .6rem 2rem;
+            background-color: $color-primary-dark;
+            color: $color-white;
+            border: none;
+            border-radius: .3rem;
+        }
     }
 }

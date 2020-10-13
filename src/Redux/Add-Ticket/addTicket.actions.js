@@ -22,7 +22,6 @@ export const asyncAddTicket = ticket => {
             const { name, email, designation, assign, deadline, title, task } = ticket;
             dispatch(addTicketStart());
             const dateArray = deadline.split("-");
-            console.log(deadline.split("-"));
             const newDeadline = new Date(dateArray[0], `${ +dateArray[1] - 1}`, dateArray[2]);
             const fireStamp = new firebase.firestore.Timestamp.fromDate(newDeadline);
             const ticketRef = firestore.collection("tickets");

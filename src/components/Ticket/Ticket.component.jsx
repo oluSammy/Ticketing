@@ -2,20 +2,22 @@ import React from 'react';
 import './Ticket.styles.scss';
 import { Link } from 'react-router-dom';
 import { limitSentence } from './../../utility-functions/dateConversion';
-import { dateBeforeDeadline, timeStampToDate } from '../../utility-functions/dateToTimestamp';
+import { dateBeforeDeadline, timeStampToDate, dateAfterCompletion } from '../../utility-functions/dateToTimestamp';
 
 const Ticket = ({ ticket, type }) => {
-    const { assigned, assignedTo, senderName, task, title, createdAt, deadline } = ticket.data;
+    const { assigned, assignedTo, senderName, task, title, createdAt, deadline, completedOn } = ticket.data;
 
     return (
         <Link to={`/ticket/${ticket.id}`} className="ticket">
             <div className="ticket__header">
                 { type === 'uncompleted' && <h4 className="ticket__status">Uncompleted</h4> }
+                { type === 'unassigned' && <h4 className="ticket__status">Uncompleted</h4> }
                 { type === 'overdue' && <h4 className="ticket__status">Overdue</h4> }
+                { type === 'completed' && <h4 className="ticket__status">Completed</h4> }
                 { type === 'Due-Today' && <h4 className="ticket__status">Due Today</h4> }
                 <div className="ticket__assigned-to">
                     {assigned ?
-                        <span className="ticket__symbol" >Assigned to &rarr; </span>: ''
+                        <span className="ticket__symbol" >Assigned to &rarr; </span>: 'Unassigned'
                 }
                 <h6 className="ticket__staff-assigned">{assignedTo}</h6>
                 </div>
@@ -28,7 +30,9 @@ const Ticket = ({ ticket, type }) => {
             </div>
             <div className="ticket__details">
                 <h5 className="ticket__created">Created - {timeStampToDate(createdAt)} </h5>
-                {type = 'uncompleted' &&  <h6 className="ticket__assigned">{dateBeforeDeadline(deadline)}</h6>}
+                {type === 'uncompleted' &&  <h6 className="ticket__assigned">{dateBeforeDeadline(deadline)}</h6>}
+                {type === 'overdue' &&  <h6 className="ticket__assigned">{dateBeforeDeadline(deadline)}</h6>}
+                {type === 'completed' &&  <h6 className="ticket__assigned">{dateAfterCompletion(completedOn)}</h6>}
                 {/* <h6 className="ticket__assigned">Overdue by 12 days</h6> */}
             </div>
         </Link>

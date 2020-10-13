@@ -3,7 +3,9 @@ import { ticketActionTypes } from './Ticket.types';
 const INIT_STATE = {
     ticket: null,
     isGettingTicket: false,
-    getTicketErrMsg: ''
+    getTicketErrMsg: '',
+    isAssigningTicket: false,
+    assignErrMsg: ''
 }
 
 const ticketReducer = (state=INIT_STATE, action) => {
@@ -24,6 +26,22 @@ const ticketReducer = (state=INIT_STATE, action) => {
                 ...state,
                 isGettingTicket: false,
                 getTicketErrMsg: action.payload
+            }
+        case ticketActionTypes.ASSIGN_TICKET_START:
+            return {
+                ...state,
+                isAssigningTicket: true,
+            }
+        case ticketActionTypes.ASSIGN_TICKET_SUCCESS:
+            return {
+                ...state,
+                isAssigningTicket: false
+            }
+        case ticketActionTypes.ASSIGN_TICKET_FAILURE:
+            return {
+                ...state,
+                isAssigningTicket: false,
+                assignErrMsg: action.payload
             }
         default:
             return state;

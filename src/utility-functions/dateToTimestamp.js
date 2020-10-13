@@ -19,3 +19,17 @@ export const dateBeforeDeadline = dateObj => {
         return `Deadline ~ ${daysLeft} days left`;
     }
 }
+
+export const dateAfterCompletion = dateObj => {
+    let today = new Date();
+    const deadline = new Date(dateObj.seconds * 1000);
+    const difference = deadline.getTime() - today.getTime();
+    const daysLeft = (Math.ceil(difference/ (1000 * 3600 * 24)));
+    if(daysLeft === 0)  {
+        return "Completed => Today"
+    } else if(daysLeft < 0 ) {
+        return `Completed ~ ${Math.abs(daysLeft)} days ago`
+    } else {
+        return `Completed ~ ${daysLeft} days left`;
+    }
+}

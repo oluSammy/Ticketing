@@ -16,8 +16,10 @@ const NewTask = ({ currentUser, userDetail, addTask, isAddingTickets, isGettingS
 
     useEffect(() => {
         userDetail &&
-        setTicket({ ...ticket, name: `${userDetail.firstName} ${userDetail.surname}`,
-        designation: userDetail.designation });
+        // setTicket({ ...ticket, name: `${userDetail.firstName} ${userDetail.surname}`,
+        // designation: userDetail.designation });
+        setTicket( ticket => ({...ticket, name: `${userDetail.firstName} ${userDetail.surname}`,
+        designation: userDetail.designation}))
     }, [userDetail])
 
     const handleChange = e => {
@@ -64,7 +66,7 @@ const NewTask = ({ currentUser, userDetail, addTask, isAddingTickets, isGettingS
                         {isGettingStaffs ?
                         <option value="">Loading</option> :
                         ictStaffs && ictStaffs.map(staff =>
-                        <option id={staff.id}
+                        <option key={staff.id}
                         value={`${staff.data.firstName} ${staff.data.surname}`}>
                         {`${staff.data.firstName} ${staff.data.surname}`}</option>)}
                     </select>

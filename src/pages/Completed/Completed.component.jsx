@@ -1,22 +1,58 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BiCheckDouble } from 'react-icons/bi';
-// import Ticket from '../../components/Ticket/Ticket.component';
+import Ticket from '../../components/Ticket/Ticket.component';
+import { connect } from 'react-redux';
+import { asyncGetCompletedTasks, asyncGetMoreCompletedTask } from './../../Redux/Completed/completed.actions';
+import { createStructuredSelector } from 'reselect';
+import { selectCompletedTasks, selectIsGettingCompleted, selectCompletedPrevDoc } from './../../Redux/Completed/completed.selectors';
+import TicketLoader from './../../components/Ticket-Loader/Ticket-Loader.component';
+import MoreButton from './../../components/MoreButton/MoreButton.component';
 
-const Completed = () => {
+const Completed = ({ getCompletedTasks, completedTasks, isGettingCompletedTasks, prevDoc, getMoreCompletedTasks }) => {
+
+    useEffect(() => {
+        (async () => {
+            !completedTasks && await getCompletedTasks();
+        })();
+    }, [getCompletedTasks, completedTasks]);
+
+    const getMoreTasks = async () => {
+        await getMoreCompletedTasks(prevDoc);
+    }
+
     return (
         <div>
             <div className="overdue__header">
                 <h3 className="overdue__heading">Completed Tasks</h3>
                 <BiCheckDouble className="overdue__icon" />
             </div>
-            <div className="tickets__container">
-                {/* <Ticket />
-                <Ticket />
-                <Ticket />
-                <Ticket /> */}
-            </div>
+            {isGettingCompletedTasks ?
+                <div className="tickets__container">
+                    <TicketLoader />
+                    <TicketLoader />
+                    <TicketLoader />
+                    <TicketLoader />
+                </div> :
+                <div className="tickets__container">
+                    {completedTasks && completedTasks.map(task => <Ticket key={task.id} ticket={task} type={'completed'} />)}
+                    <div onClick={() => getMoreTasks(   )} style={{display: 'flex', justifyContent: 'center'}} >
+                        <MoreButton />
+                    </div>
+                </div>
+            }
         </div>
     )
 }
 
-export default Completed
+const mapStateToProps = createStructuredSelector({
+    completedTasks: selectCompletedTasks,
+    isGettingCompletedTasks: selectIsGettingCompleted,
+    prevDoc: selectCompletedPrevDoc
+})
+
+const mapDispatchToProps = dispatch => ({
+    getCompletedTasks: () => dispatch(asyncGetCompletedTasks()),
+    getMoreCompletedTasks: prevDoc => dispatch(asyncGetMoreCompletedTask(prevDoc))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps) (Completed)
