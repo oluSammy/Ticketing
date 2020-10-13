@@ -40,7 +40,7 @@ export const asyncGetCompletedTasks = () => {
         try {
             dispatch(getCompletedStart());
             const completedRef = firestore.collection('tickets').where('assigned', '==', true)
-            .where('completed', '==', true).limit(2);
+            .where('completed', '==', true).orderBy('completedOn', 'desc').limit(20);
             completedRef.onSnapshot(docSnapshot => {
                 const completedTask = [];
                 docSnapshot.docs.forEach(task => completedTask.push({ id: task.id, data: task.data() }));
@@ -59,7 +59,7 @@ export const asyncGetMoreCompletedTask = prevDoc => {
         try {
             dispatch(getMoreCompletedStart());
             const completedRef = firestore.collection('tickets').where('assigned', '==', true)
-            .where('completed', '==', true).startAfter(prevDoc).limit(2);
+            .where('completed', '==', true).orderBy('completedOn', 'desc').startAfter(prevDoc).limit(20);
 
             completedRef.onSnapshot(docSnapshot => {
                 const completedTask = [];

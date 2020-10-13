@@ -29,6 +29,19 @@ const assignTicketFailure = errMsg => ({
     payload: errMsg
 });
 
+const resolveTicketStart = () => ({
+    type: ticketActionTypes.RESOLVE_TICKET_START
+});
+
+const resolveTicketSuccess = () => ({
+    type: ticketActionTypes.RESOLVE_TICKET_SUCCESS
+});
+
+const resolveTicketFailure = errMsg => ({
+    type: ticketActionTypes.RESOLVE_TICKET_FAILURE,
+    payload: errMsg
+})
+
 export const asyncGetTicket = id => {
     return dispatch => {
         try {
@@ -55,6 +68,19 @@ export const asyncAssignTicket = (id, staff, deadline) => {
             dispatch(assignTicketSuccess());
         } catch(errMsg) {
             dispatch(assignTicketFailure(errMsg));
+        }
+    }
+}
+
+export const asyncResolveTicket = id => {
+    return async dispatch => {
+        try {
+            dispatch(resolveTicketStart());
+            const ticketRef = firestore.collection('tickets').doc(`${id}`);
+            await ticketRef.update({ resolved: true});
+            dispatch(resolveTicketSuccess)
+        } catch(errMsg) {
+            dispatch(resolveTicketFailure(errMsg));
         }
     }
 }

@@ -5,7 +5,9 @@ const INIT_STATE = {
     isGettingTicket: false,
     getTicketErrMsg: '',
     isAssigningTicket: false,
-    assignErrMsg: ''
+    assignErrMsg: '',
+    isResolving: false,
+    resolveErrMsg: ''
 }
 
 const ticketReducer = (state=INIT_STATE, action) => {
@@ -42,6 +44,22 @@ const ticketReducer = (state=INIT_STATE, action) => {
                 ...state,
                 isAssigningTicket: false,
                 assignErrMsg: action.payload
+            }
+        case ticketActionTypes.RESOLVE_TICKET_START:
+            return {
+                ...state,
+                isResolving: true
+            }
+        case ticketActionTypes.RESOLVE_TICKET_SUCCESS:
+            return {
+                ...state,
+                isResolving: false
+            }
+        case ticketActionTypes.RESOLVE_TICKET_FAILURE:
+            return {
+                ...state,
+                isResolving: false,
+                resolveErrMsg: action.payload
             }
         default:
             return state;

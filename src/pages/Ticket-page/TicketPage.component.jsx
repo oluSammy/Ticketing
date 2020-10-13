@@ -3,7 +3,7 @@ import './TicketPage.styles.scss';
 import { AiOutlineFileDone } from 'react-icons/ai';
 import { BiMessageSquareError } from 'react-icons/bi';
 import { connect } from 'react-redux';
-import { asyncAssignTicket, asyncGetTicket } from './../../Redux/Ticket/Ticket.actions';
+import { asyncAssignTicket, asyncGetTicket, asyncResolveTicket } from './../../Redux/Ticket/Ticket.actions';
 import { useParams } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentTicket, selectIsGettingTicket } from '../../Redux/Ticket/Ticket.selectors';
@@ -12,7 +12,7 @@ import Loader from 'react-loader-spinner';
 import { selectIctStaffs, selectIsGettingIctStaffs } from './../../Redux/ict-staff/ictStaff.selectors';
 import { getDateFormat } from './../../utility-functions/dateConversion';
 
-const TicketPage = ({ getTicket, isGettingTicket , ticket, isGettingIctStaffs, ictStaffs, assignTicket }) => {
+const TicketPage = ({ getTicket, isGettingTicket , ticket, isGettingIctStaffs, ictStaffs, assignTicket, resolveTicket }) => {
     let { id } = useParams();
 
     const [staff, setStaff] = useState("");
@@ -130,11 +130,12 @@ const TicketPage = ({ getTicket, isGettingTicket , ticket, isGettingIctStaffs, i
                         <div className="ticket-page__resolve">
                             <h6 className="ticket-page__resolve-status">Unresolved</h6>
                             <BiMessageSquareError className="ticket-page__resolve-icon ticket-page__resolve-err" />
-                            <button className="ticket-page__resolve-action">Mark As Resolved</button>
+                            <button onClick={() => resolveTicket(id)}
+                            className="ticket-page__resolve-action">Mark As Resolved</button>
                         </div>}
                     </div>
                 </div>}
-            </div>  }
+            </div>}
         </>
     )
 };
@@ -148,7 +149,8 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
     getTicket: id => dispatch(asyncGetTicket(id)),
-    assignTicket: (id, staff, deadline) => dispatch(asyncAssignTicket(id, staff, deadline))
+    assignTicket: (id, staff, deadline) => dispatch(asyncAssignTicket(id, staff, deadline)),
+    resolveTicket: id => dispatch(asyncResolveTicket(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (TicketPage)

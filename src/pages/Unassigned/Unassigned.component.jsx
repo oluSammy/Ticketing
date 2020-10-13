@@ -22,7 +22,7 @@ const Unassigned = ({ getUnassignedTasks, unassignedTasks, isGettingTasks, prevD
     }
 
     return (
-        <div>
+        <div style={{minHeight: '85vh'}}>
             <div className="overdue__header">
                 <h3 className="overdue__heading">Tickets yet to be assigned</h3>
                 <MdAssignmentInd className="overdue__icon" />
