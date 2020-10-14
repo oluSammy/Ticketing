@@ -55,12 +55,16 @@
         font-weight: 600;
         border: 1px solid $color-white;
         border-radius: .4rem;
-        cursor: pointer;
         transition: all .1s;
         margin-top: 1.4rem;
 
         &:hover {
             transform: translateY(-2px);
         }
+    }
+
+    &__err-msg {
+        font-size: 1.3rem;
+        color: red;
     }
 }

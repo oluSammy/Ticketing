@@ -11,6 +11,7 @@ import ictReducer from './ict-staff/ictStaff.reducer';
 import unassignedReducer from './Unassigned/Unassigned.reducer';
 import completedReducer from './Completed/completed.reducer';
 import resolvedReducer from './Resolved/Resolved.reducer';
+import registerReducer from './Register/register.reducer';
 
 
 const persistConfig = {
@@ -29,7 +30,8 @@ const rootReducer = combineReducers({
     ictStaffs: ictReducer,
     unassigned: unassignedReducer,
     completed: completedReducer,
-    resolved: resolvedReducer
+    resolved: resolvedReducer,
+    register: registerReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);
