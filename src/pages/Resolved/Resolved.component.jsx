@@ -1,24 +1,61 @@
+import React, { useEffect } from 'react';
 import { BiCheckDouble } from 'react-icons/bi';
-import React from 'react';
 import './Resolved.styles.scss';
-// import Ticket from '../../components/Ticket/Ticket.component';
+import Ticket from '../../components/Ticket/Ticket.component';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { asyncGetMoreResolved, asyncGetResolved } from './../../Redux/Resolved/Resolved.actions';
+import { selectIsGettingResolved, selectResolvedTasks, selectResolvedPreviousDoc }
+from './../../Redux/Resolved/Resolved.selectors';
+import TicketLoader from './../../components/Ticket-Loader/Ticket-Loader.component';
+import MoreButton from './../../components/MoreButton/MoreButton.component';
 
 
-const Resolved = () => {
+const Resolved = ({ getResolvedTasks, isGettingResolved, resolved, prevDoc, getMoreResolved }) => {
+
+    useEffect(() => {
+        (async () => {
+            !resolved && await getResolvedTasks()
+        })();
+    }, [getResolvedTasks, resolved]);
+
+    const getMoreTasks = async () => {
+        await getMoreResolved(prevDoc);
+    }
+
     return (
-        <div className="resolved">
+        <div className="resolved" style={{minHeight: '85vh'}}>
             <div className="overdue__header">
                 <h3 className="overdue__heading">Resolved Tickets</h3>
                 <BiCheckDouble className="overdue__icon" />
             </div>
+            {isGettingResolved ?
             <div className="tickets__container">
-                {/* <Ticket />
-                <Ticket />
-                <Ticket />
-                <Ticket /> */}
+                <TicketLoader />
+                <TicketLoader />
+                <TicketLoader />
+                <TicketLoader />
+            </div> :
+            <div className="tickets__container">
+                {resolved && resolved.map(task => <Ticket key={task.id} ticket={task} type={'overdue'} />)}
+                <div onClick={() => getMoreTasks()} style={{display: 'flex', justifyContent: 'center'}} >
+                    <MoreButton />
+                </div>
             </div>
+            }
         </div>
     )
 }
 
-export default Resolved
+const mapStateToProps = createStructuredSelector({
+    isGettingResolved: selectIsGettingResolved,
+    resolved: selectResolvedTasks,
+    prevDoc: selectResolvedPreviousDoc
+});
+
+const mapDispatchToProps = dispatch => ({
+    getResolvedTasks: () => dispatch(asyncGetResolved()),
+    getMoreResolved: prevDoc => dispatch(asyncGetMoreResolved(prevDoc))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps) (Resolved)

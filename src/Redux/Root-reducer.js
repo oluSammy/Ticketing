@@ -10,6 +10,7 @@ import dueTodayReducer from './Due-Today/dueToday.reducer';
 import ictReducer from './ict-staff/ictStaff.reducer';
 import unassignedReducer from './Unassigned/Unassigned.reducer';
 import completedReducer from './Completed/completed.reducer';
+import resolvedReducer from './Resolved/Resolved.reducer';
 
 
 const persistConfig = {
@@ -27,7 +28,8 @@ const rootReducer = combineReducers({
     dueToday: dueTodayReducer,
     ictStaffs: ictReducer,
     unassigned: unassignedReducer,
-    completed: completedReducer
+    completed: completedReducer,
+    resolved: resolvedReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);
