@@ -9,6 +9,7 @@ import { selectDue, selectIsGettingDueToday, selectDueTodayPrevDoc } from './../
 import TicketLoader from '../../components/Ticket-Loader/Ticket-Loader.component';
 import MoreButton from './../../components/MoreButton/MoreButton.component';
 import Ticket from './../../components/Ticket/Ticket.component';
+import EmptyTasks from './../../components/EmptyTasks/EmptyTasks.component';
 
 const DueToday = ({ getDueToday, dueToday, isGettingDueToday, prevDoc, getMoreDueToday }) => {
 
@@ -45,6 +46,10 @@ const DueToday = ({ getDueToday, dueToday, isGettingDueToday, prevDoc, getMoreDu
                 </div>}
             </div>
             }
+            {dueToday && !dueToday.length &&
+            <div className="empty-task-container">
+                <EmptyTasks title='due' />
+            </div>}
         </div>
     )
 }

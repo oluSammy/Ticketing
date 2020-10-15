@@ -8,6 +8,7 @@ import { createStructuredSelector } from 'reselect';
 import { selectIsGettingDue, selectOverdueTasks, selectDuePrevDoc } from './../../Redux/Due/due.selectors';
 import Ticket from './../../components/Ticket/Ticket.component';
 import MoreButton from './../../components/MoreButton/MoreButton.component';
+import EmptyTasks from '../../components/EmptyTasks/EmptyTasks.component';
 
 const Overdue = ({ getDueTasks, dueTasks, isGettingTasks, getMoreDueTasks, prevDoc }) => {
 
@@ -43,6 +44,10 @@ const Overdue = ({ getDueTasks, dueTasks, isGettingTasks, getMoreDueTasks, prevD
                     </div>}
                 </div>
             }
+            {dueTasks && !dueTasks.length &&
+            <div className="empty-task-container">
+                <EmptyTasks title='due' />
+            </div>}
         </div>
     )
 }

@@ -7,6 +7,7 @@ import { createStructuredSelector } from 'reselect';
 import { selectCompletedTasks, selectIsGettingCompleted, selectCompletedPrevDoc } from './../../Redux/Completed/completed.selectors';
 import TicketLoader from './../../components/Ticket-Loader/Ticket-Loader.component';
 import MoreButton from './../../components/MoreButton/MoreButton.component';
+import EmptyTasks from '../../components/EmptyTasks/EmptyTasks.component';
 
 const Completed = ({ getCompletedTasks, completedTasks, isGettingCompletedTasks, prevDoc, getMoreCompletedTasks }) => {
 
@@ -38,6 +39,11 @@ const Completed = ({ getCompletedTasks, completedTasks, isGettingCompletedTasks,
                     <div onClick={() => getMoreTasks(   )} style={{display: 'flex', justifyContent: 'center'}} >
                         <MoreButton />
                     </div>
+                </div>
+            }
+            {completedTasks && !completedTasks.length &&
+                <div className="empty-task-container">
+                    <EmptyTasks title={Completed} />
                 </div>
             }
         </div>

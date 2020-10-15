@@ -9,6 +9,7 @@ import { selectIsGettingUncompleted } from '../../Redux/Uncompleted/uncompleted.
 import { selectUncompletedTasks, selectUncompletedPrevDoc } from './../../Redux/Uncompleted/uncompleted.selectors';
 import TicketLoader from '../../components/Ticket-Loader/Ticket-Loader.component';
 import MoreButton from './../../components/MoreButton/MoreButton.component';
+import EmptyTasks from '../../components/EmptyTasks/EmptyTasks.component';
 
 const Uncompleted = ({ getUncompletedTasks, isGettingTasks, uncompletedTasks, prevDoc, getMoreUncompleted }) => {
 
@@ -46,6 +47,10 @@ const Uncompleted = ({ getUncompletedTasks, isGettingTasks, uncompletedTasks, pr
                     </div>}
                 </div>
             }
+            {uncompletedTasks && !uncompletedTasks.length &&
+            <div className="empty-task-container">
+                <EmptyTasks title="due" />
+            </div> }
         </div>
     );
 }

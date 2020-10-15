@@ -8,6 +8,7 @@ import { selectUnassignedTasks, selectIsGettingUnassigned, newUnassignedPrevDoc 
 from '../../Redux/Unassigned/Unassigned.selectors';
 import TicketLoader from '../../components/Ticket-Loader/Ticket-Loader.component';
 import MoreButton from './../../components/MoreButton/MoreButton.component';
+import EmptyTasks from './../../components/EmptyTasks/EmptyTasks.component';
 
 const Unassigned = ({ getUnassignedTasks, unassignedTasks, isGettingTasks, prevDoc, getMoreUnassigned }) => {
 
@@ -35,11 +36,16 @@ const Unassigned = ({ getUnassignedTasks, unassignedTasks, isGettingTasks, prevD
                     <TicketLoader />
                 </div>:
             <div className="tickets__container">
-                {unassignedTasks && unassignedTasks.map(task => <Ticket key={task.id} ticket={task} type={'unassigned'} />)}
+                {unassignedTasks &&
+                unassignedTasks.map(task => <Ticket key={task.id} ticket={task} type={'unassigned'} />)}
                 {prevDoc !== undefined &&
                 <div onClick={() => getMoreTasks()} style={{display: 'flex', justifyContent: 'center'}} >
                     <MoreButton />
                 </div>}
+            </div>}
+            {unassignedTasks && !unassignedTasks.length &&
+            <div className="empty-task-container">
+                <EmptyTasks title={'unassigned'} />
             </div>}
         </div>
     )
