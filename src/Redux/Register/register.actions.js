@@ -77,8 +77,19 @@ export const asyncRegisterStaff = staff => {
                     userRight: 'staff'
                 });
             });
+            dispatch(registerStaffSuccess());
+            Swal.fire(
+                'Done',
+                'New ICT Staff created',
+                'success'
+            );
         } catch(errMsg) {
-            dispatch(registerStaffFailure(errMsg))
+            dispatch(registerStaffFailure(errMsg));
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+            });
         }
     }
 }

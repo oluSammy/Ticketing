@@ -22,7 +22,7 @@ const Completed = ({ getCompletedTasks, completedTasks, isGettingCompletedTasks,
     }
 
     return (
-        <div>
+        <div style={{minHeight: '87vh'}}>
             <div className="overdue__header">
                 <h3 className="overdue__heading">Completed Tasks</h3>
                 <BiCheckDouble className="overdue__icon" />
