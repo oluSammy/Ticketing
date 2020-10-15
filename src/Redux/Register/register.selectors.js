@@ -6,3 +6,8 @@ export const selectIsRegisteringICT = createSelector(
     [selectRegister],
     register => register.isRegisteringICT
 );
+
+export const selectIsRegisteringStaff = createSelector(
+    [selectRegister],
+    register => register.isRegisteringStaff
+);

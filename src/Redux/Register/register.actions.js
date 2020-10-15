@@ -15,11 +15,24 @@ const registerICTFailure = errMsg => ({
     payload: errMsg
 });
 
+const registerStaffStart = () => ({
+    type: registerActionTypes.REGISTER_STAFF_START
+});
+
+const registerStaffSuccess = () => ({
+    type: registerActionTypes.REGISTER_STAFF_SUCCESS
+});
+
+const registerStaffFailure = errMsg => ({
+    type: registerActionTypes.REGISTER_STAFF_FAILURE,
+    payload: errMsg
+});
+
 export const asyncRegisterICT = staff => {
     return dispatch => {
         try {
             dispatch(registerICTStart());
-            const { firstName, lastName, email, pass, confirmPass } = staff;
+            const { firstName, lastName, email, pass } = staff;
             const userRef = firestore.collection('users');
             auth.createUserWithEmailAndPassword(email, pass)
             .then(userCredential => {
@@ -44,6 +57,28 @@ export const asyncRegisterICT = staff => {
                 title: 'Oops...',
                 text: 'Something went wrong!',
             });
+        }
+    }
+}
+
+export const asyncRegisterStaff = staff => {
+    return dispatch => {
+        try {
+            dispatch(registerStaffStart());
+            const { firstName, lastName, email, password, designation } = staff;
+            const userRef = firestore.collection('users');
+            auth.createUserWithEmailAndPassword(email, password)
+            .then(userCredential => {
+                userRef.doc(`${userCredential.user.uid}`)
+                .set({
+                    firstName,
+                    surname: lastName,
+                    designation,
+                    userRight: 'staff'
+                });
+            });
+        } catch(errMsg) {
+            dispatch(registerStaffFailure(errMsg))
         }
     }
 }
