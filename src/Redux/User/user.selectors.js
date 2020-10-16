@@ -16,3 +16,8 @@ export const selectUserDetail = createSelector(
     [selectUser],
     user => user.userDetail
 );
+
+export const selectSidebar = createSelector(
+    [selectUser],
+    user => user.sideBarIsOpen
+);

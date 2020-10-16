@@ -12,14 +12,21 @@ import { connect } from 'react-redux';
 import { selectCurrentUser, selectIsGettingUserDetail, selectUserDetail } from './../../Redux/User/user.selectors';
 import { asyncGetUser } from '../../Redux/User/user.actions';
 import { createStructuredSelector } from 'reselect';
+import { toggleSideBar } from './../../Redux/User/user.actions';
 
-const Sidebar = ({ currentUser, getUserDetails,isGettingUser, userDetail  }) => {
+const Sidebar = ({ currentUser, getUserDetails,isGettingUser, userDetail, toggleSidebar  }) => {
 
     useEffect(() => {
         (async () => {
             if (currentUser) {await getUserDetails(currentUser.uid)}
         }) ()
     }, [getUserDetails, currentUser]);
+
+    const closeSideBar = () => {
+        if(window.innerWidth < 580) {
+            toggleSidebar();
+        }
+    }
 
     return (
         <div className="sidebar">
@@ -37,43 +44,43 @@ const Sidebar = ({ currentUser, getUserDetails,isGettingUser, userDetail  }) => 
                 }
             </div>
             <ul className="sidebar__list">
-                <NavLink to="/" className="sidebar__link" >
+                <NavLink to="/" className="sidebar__link" onClick={closeSideBar}>
                     <AiOutlineHome className="sidebar__link-icon" />
                     <span>Home</span>
                 </NavLink>
-                <NavLink to="/new-task" className="sidebar__link" activeClassName="sidebar__active">
+                <NavLink to="/new-task" className="sidebar__link" activeClassName="sidebar__active" onClick={closeSideBar}>
                     <MdAddCircleOutline className="sidebar__link-icon" />
                     <span>New Task</span>
                 </NavLink>
-                <NavLink to="/due" className="sidebar__link" activeClassName="sidebar__active">
+                <NavLink to="/due" className="sidebar__link" activeClassName="sidebar__active" onClick={closeSideBar}>
                     <BiCalendarWeek className="sidebar__link-icon" />
                     <span>Due Today</span>
                 </NavLink>
-                <NavLink to="/overdue" className="sidebar__link" activeClassName="sidebar__active">
+                <NavLink to="/overdue" className="sidebar__link" activeClassName="sidebar__active" onClick={closeSideBar}>
                     <BiCommentError className="sidebar__link-icon" />
                     <span>Overdue</span>
                 </NavLink>
-                <NavLink to="/resolved" className="sidebar__link" activeClassName="sidebar__active">
+                <NavLink to="/resolved" className="sidebar__link" activeClassName="sidebar__active" onClick={closeSideBar}>
                     <BiCheckDouble className="sidebar__link-icon" />
                     <span>Resolved Tickets</span>
                 </NavLink>
-                <NavLink to="/unassigned" className="sidebar__link" activeClassName="sidebar__active">
+                <NavLink to="/unassigned" className="sidebar__link" activeClassName="sidebar__active" onClick={closeSideBar}>
                     <CgAssign className="sidebar__link-icon" />
                     <span>Unassigned Tickets</span>
                 </NavLink>
-                <NavLink to="/completed" className="sidebar__link" activeClassName="sidebar__active">
+                <NavLink to="/completed" className="sidebar__link" activeClassName="sidebar__active" onClick={closeSideBar}>
                     <BiCheckDouble className="sidebar__link-icon" />
                     <span>Completed </span>
                 </NavLink>
-                <NavLink to="/uncompleted" className="sidebar__link" activeClassName="sidebar__active">
+                <NavLink to="/uncompleted" className="sidebar__link" activeClassName="sidebar__active" onClick={closeSideBar}>
                     <BiMessageAltError className="sidebar__link-icon" />
                     <span>Uncompleted </span>
                 </NavLink>
-                <NavLink to="/register-staff" className="sidebar__link" activeClassName="sidebar__active">
+                <NavLink to="/register-staff" className="sidebar__link" activeClassName="sidebar__active" onClick={closeSideBar}>
                     <FiUserPlus className="sidebar__link-icon" />
                     <span>Register Staff</span>
                 </NavLink>
-                <NavLink to="/register-ict" className="sidebar__link" activeClassName="sidebar__active">
+                <NavLink to="/register-ict" className="sidebar__link" activeClassName="sidebar__active" onClick={closeSideBar}>
                     <BiUserPlus className="sidebar__link-icon" />
                     <span>Register ICT Staff</span>
                 </NavLink>
@@ -83,13 +90,14 @@ const Sidebar = ({ currentUser, getUserDetails,isGettingUser, userDetail  }) => 
 }
 
 const mapDispatchToProps = dispatch => ({
-    getUserDetails: uid => dispatch(asyncGetUser(uid))
+    getUserDetails: uid => dispatch(asyncGetUser(uid)),
+    toggleSidebar: () => dispatch(toggleSideBar())
 })
 
 const mapStateToProps = createStructuredSelector({
     currentUser: selectCurrentUser,
     isGettingUser: selectIsGettingUserDetail,
-    userDetail: selectUserDetail
+    userDetail: selectUserDetail,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (Sidebar);

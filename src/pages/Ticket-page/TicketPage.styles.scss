@@ -2,6 +2,11 @@
 
 .ticket-page {
     padding: 2rem;
+    min-height: 85vh;
+
+    @media only screen and (max-width: $bp-medium-2) {
+        padding: 1rem;
+    }
 
     &__header {
         display: flex;
@@ -17,6 +22,10 @@
         display: grid;
         grid-template-columns: 15rem .6fr;
         margin-top: 2rem;
+
+        @media only screen and (max-width: $bp-medium-1) {
+            grid-template-columns: 13rem 1fr;
+        }
     }
 
     &__label {

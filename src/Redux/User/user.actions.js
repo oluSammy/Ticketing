@@ -32,3 +32,7 @@ export const asyncGetUser = id => {
         }
     }
 }
+
+export const toggleSideBar = () => ({
+    type: userActionTypes.TOGGLE_SIDEBAR
+});

@@ -5,8 +5,12 @@ import DashboardMain from '../Dashboard-main/Dashboard-main.components';
 import './Dashboard.styles.scss';
 import { connect } from 'react-redux';
 import { asyncGetICTStaffs } from './../../Redux/ict-staff/ictStaff.actions';
+import { createStructuredSelector } from 'reselect';
+import { selectSidebar } from '../../Redux/User/user.selectors';
+import { Swipeable  } from 'react-swipeable';
+import { toggleSideBar } from './../../Redux/User/user.actions';
 
-const Dashboard = ({ getIctStaffs }) => {
+const Dashboard = ({ getIctStaffs, sidebarHidden, toggleSidebar }) => {
 
     useEffect(() => {
         const getStaffs = async () => {
@@ -15,23 +19,45 @@ const Dashboard = ({ getIctStaffs }) => {
         getStaffs();
     }, [getIctStaffs]);
 
+    const swipedRight = () => {
+        sidebarHidden && toggleSidebar();
+    }
+
+    const swipedLeft = () => {
+        !sidebarHidden && toggleSidebar();
+    }
+
+    let sidebarStyles = {};
+    if(sidebarHidden && window.innerWidth < 580) {
+        sidebarStyles = {
+            transform: 'translateX(.1%)',
+            width: '50vw'
+        }
+    }
+
     return (
         <div className="dashboard">
             <div className="dashboard__nav">
                 <Navbar />
             </div>
-            <div className="dashboard__sidebar">
+            <div className="dashboard__sidebar" style={sidebarStyles}>
                 <Sidebar />
             </div>
-            <div className="dashboard__main">
+            <Swipeable onSwipedRight={() => swipedRight} onSwipedLeft={() => swipedLeft}
+            className="dashboard__main">
                 <DashboardMain />
-            </div>
+            </Swipeable>
         </div>
     )
 }
 
-const mapDispatchToProps = dispatch => ({
-    getIctStaffs: () => dispatch(asyncGetICTStaffs())
-})
+const mapStateToProps = createStructuredSelector({
+    sidebarHidden: selectSidebar
+});
 
-export default connect(null, mapDispatchToProps) (Dashboard);
+const mapDispatchToProps = dispatch => ({
+    getIctStaffs: () => dispatch(asyncGetICTStaffs()),
+    toggleSidebar: () => dispatch(toggleSideBar())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps) (Dashboard);
