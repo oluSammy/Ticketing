@@ -54,8 +54,17 @@
         display: block;
         text-decoration: none;
 
+        @media only screen and (max-width: $bp-large) {
+            padding-left: 2rem;
+        }
+
+
         & span {
             font-size: 1.8rem;
+
+            @media only screen and (max-width: 980px) {
+                font-size: 1.2rem;
+            }
         }
 
         &:hover {

@@ -13,11 +13,19 @@
         position: fixed;
         width: 20vw;
         z-index: 1;
+        transition: all .2s;
 
+        @media only screen and (max-width: $bp-tab) {
+            transform: translateX(-100%);
+        }
     }
 
     &__main {
         grid-column:  2 / 3;
         background-color: $color-grey-light;
+
+        @media only screen and (max-width: $bp-tab) {
+            grid-column:  1 / 3;
+        }
     }
 }

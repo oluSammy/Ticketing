@@ -12,6 +12,22 @@
         border-radius: 1rem;
         padding: 4rem;
         background-color: $color-white;
+
+        @media only screen and (max-width: 866px) {
+            width: 48vw;
+        }
+
+        @media only screen and (max-width: $bp-medium) {
+            width: 45vw;
+        }
+
+        @media only screen and (max-width: $bp-medium-1-a) {
+            width: 65vw;
+        }
+
+        @media only screen and (max-width: $bp-phone) {
+            width: 85vw;
+        }
     }
 
     &__header {

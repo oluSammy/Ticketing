@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import './sidebar.styles.scss';
 import { GrUserManager } from 'react-icons/gr';
 import { AiOutlineHome } from 'react-icons/ai';
-import { CgAssign } from 'react-icons/cg'
-import { BiCalendarWeek, BiCommentError, BiUserPlus, BiMessageAltError } from 'react-icons/bi'
+import { CgAssign } from 'react-icons/cg';
+import { BiCalendarWeek, BiCommentError, BiUserPlus, BiMessageAltError } from 'react-icons/bi';
 import { BiCheckDouble } from 'react-icons/bi';
 import { FiUserPlus } from 'react-icons/fi';
 import { NavLink } from 'react-router-dom';

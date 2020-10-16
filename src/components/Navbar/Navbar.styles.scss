@@ -8,9 +8,35 @@
     color: $color-white;
     padding: 1.5rem 10rem;
 
-    &__heading {
+    @media only screen and (max-width: $bp-medium) {
+        padding: 1.3rem 4rem;
+    }
+
+    @media only screen and (max-width: $bp-medium-2) {
+        padding: 1.3rem 2rem;
+    }
+
+    &__header {
         margin-right: auto;
+        display: flex;
+        align-items: center;
+    }
+
+    &__header-icon {
+        font-size: 2rem;
+        margin-right: 1rem;
+    }
+
+    &__heading {
         font-weight: 300;
+
+        @media only screen and (max-width: $bp-medium-2) {
+            font-size: 1.4rem;
+        }
+
+        @media only screen and (max-width: $bp-phone) {
+            font-size: 1.2rem;
+        }
     }
 
     &__list {
@@ -28,6 +54,14 @@
         margin-left: 2rem;
         color: $color-white;
         text-decoration: none;
+
+        @media only screen and (max-width: $bp-medium-2) {
+            margin-left: 1rem;
+        }
+
+        @media only screen and (max-width: $bp-phone) {
+            font-size: 1.2rem;
+        }
 
         &:hover {
             text-decoration: underline;
