@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { setUser } from './Redux/User/user.actions';
 import { selectCurrentUser } from './Redux/User/user.selectors';
 import { auth } from './firebase/firebase.utils';
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Dashboard from './pages/Dashboard/Dashboard.component';
 import { createStructuredSelector } from 'reselect';
 
@@ -15,7 +15,8 @@ function App({ setCurrentUser, currentUser }) {
     auth.onAuthStateChanged(user => {
       setCurrentUser(user);
     })
-  });
+  }, [currentUser, setCurrentUser]);
+
   return (
     <div className="App">
       {currentUser ? <Dashboard /> : <LoginPage /> }

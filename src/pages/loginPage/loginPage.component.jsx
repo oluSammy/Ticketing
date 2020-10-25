@@ -9,11 +9,10 @@ import { auth } from './../../firebase/firebase.utils';
 import { connect } from 'react-redux';
 import { asyncGetUser } from '../../Redux/User/user.actions';
 import { selectUserDetail } from '../../Redux/User/user.selectors';
-import { selectCurrentUser } from './../../Redux/User/user.selectors';
 import { createStructuredSelector } from 'reselect';
 import Swal from 'sweetalert2';
 
-const LoginPage = ({ currentUser }) => {
+const LoginPage = () => {
     const [userCredentials, setUserCredentials] = useState({ email: '', password: '' });
     const { email, password } = userCredentials;
     const [isSigningIn, setIsSigningIn] = useState(false);
@@ -88,8 +87,7 @@ const LoginPage = ({ currentUser }) => {
                     <div className="login__form-group" style={{textAlign: 'center'}}>
                         {isSigningIn ?
                             <input className="login__submit" type="submit" disabled={true} value="wait"/> :
-                            <input className="login__submit" type="submit" value="Sign In"/>
-                        }
+                            <input className="login__submit" type="submit" value="Sign In"/>}
                     </div>
                 </form>
             </div>
@@ -102,8 +100,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = createStructuredSelector({
-    userDetail: selectUserDetail,
-    currentUser: selectCurrentUser
+    userDetail: selectUserDetail
 });
 
 export default connect(mapStateToProps, mapDispatchToProps) (LoginPage);

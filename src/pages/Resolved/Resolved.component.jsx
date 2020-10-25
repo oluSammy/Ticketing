@@ -9,6 +9,7 @@ import { selectIsGettingResolved, selectResolvedTasks, selectResolvedPreviousDoc
 from './../../Redux/Resolved/Resolved.selectors';
 import TicketLoader from './../../components/Ticket-Loader/Ticket-Loader.component';
 import MoreButton from './../../components/MoreButton/MoreButton.component';
+import EmptyTasks from '../../components/EmptyTasks/EmptyTasks.component';
 
 
 const Resolved = ({ getResolvedTasks, isGettingResolved, resolved, prevDoc, getMoreResolved }) => {
@@ -38,11 +39,15 @@ const Resolved = ({ getResolvedTasks, isGettingResolved, resolved, prevDoc, getM
             </div> :
             <div className="tickets__container">
                 {resolved && resolved.map(task => <Ticket key={task.id} ticket={task} type={'overdue'} />)}
+                {prevDoc !== undefined &&
                 <div onClick={() => getMoreTasks()} style={{display: 'flex', justifyContent: 'center'}} >
                     <MoreButton />
-                </div>
-            </div>
-            }
+                </div>}
+            </div>}
+            {resolved && !resolved.length &&
+            <div className="empty-task-container">
+                <EmptyTasks title='resolved' />
+            </div>}
         </div>
     )
 }

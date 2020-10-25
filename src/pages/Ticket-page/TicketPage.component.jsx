@@ -105,10 +105,13 @@ const TicketPage = ({ getTicket, isGettingTicket , ticket, isGettingIctStaffs, i
                 </div>
                 <div className="ticket-page__content">
                     <h6 className="ticket-page__label">Deadline:</h6>
-                    <div className="ticket-page__k" style={{fontFamily: 'sans-serif'}}>
+                    {ticket.deadline ? <div className="ticket-page__k" style={{fontFamily: 'sans-serif'}}>
                         <p className="ticket-page__key">{timeStampToDate(ticket.deadline)}</p>
                         <p className="ticket-page__key">{dateBeforeDeadline(ticket.deadline)}</p>
-                    </div>
+                    </div> :
+                    <div className="ticket-page__k" style={{fontFamily: 'sans-serif'}}>
+                        <p className="ticket-page__key">Not Set</p>
+                    </div>}
                 </div>
                 {ticket.completed &&
                 <div className="ticket-page__content">

@@ -36,9 +36,10 @@ const Completed = ({ getCompletedTasks, completedTasks, isGettingCompletedTasks,
                 </div> :
                 <div className="tickets__container">
                     {completedTasks && completedTasks.map(task => <Ticket key={task.id} ticket={task} type={'completed'} />)}
+                    {prevDoc !== undefined &&
                     <div onClick={() => getMoreTasks(   )} style={{display: 'flex', justifyContent: 'center'}} >
                         <MoreButton />
-                    </div>
+                    </div>}
                 </div>
             }
             {completedTasks && !completedTasks.length &&

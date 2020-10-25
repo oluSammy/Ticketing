@@ -44,7 +44,7 @@ export const asyncAddTicket = ticket => {
                 'Done!',
                 `New Task Assigned to ${assign}`,
                 'success'
-            )
+            );
         } catch (errMsg) {
             dispatch(addTicketFailure(errMsg))
         }

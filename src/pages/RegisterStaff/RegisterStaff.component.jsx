@@ -85,7 +85,6 @@ const RegisterStaff = ({ registerStaff }) => {
                 </div>
                 <input type="submit" value="Register" className="register-staff__btn" />
             </form>
-
         </div>
     )
 }

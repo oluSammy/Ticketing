@@ -27,19 +27,17 @@ const Ticket = ({ ticket, type }) => {
             <h3 className="ticket__title">{title}</h3>
             <p className="ticket__content">{limitSentence(task)}.</p>
             <div className="ticket__sender">
-                <span className="ticket__raised-by ticket__symbol">Raised by &rarr; </span>
+                <span className="ticket__raised-by ticket__symbol">Raised by </span>
                 <h3 className="ticket__sender-name">{senderName}</h3>
             </div>
             <div className="ticket__details">
                 <h5 className="ticket__created">Created - {timeStampToDate(createdAt)} </h5>
-                {type === 'uncompleted' &&  <h6 className="ticket__assigned">{dateBeforeDeadline(deadline)}</h6>}
+                {type === 'uncompleted' && deadline && <h6 className="ticket__assigned">{dateBeforeDeadline(deadline)}</h6>}
                 {type === 'overdue' &&  <h6 className="ticket__assigned">{dateBeforeDeadline(deadline)}</h6>}
                 {type === 'Due-Today' &&  <h6 className="ticket__assigned">{dateBeforeDeadline(deadline)}</h6>}
                 {type === 'completed' &&  <h6 className="ticket__assigned">{dateAfterCompletion(completedOn)}</h6>}
-                {/* <h6 className="ticket__assigned">Overdue by 12 days</h6> */}
             </div>
         </Link>
     );
 }
-// kk completed, createdAt,resolved, senderDesignation, senderEmail, selectUncompletedTasks,  ,
 export default Ticket
