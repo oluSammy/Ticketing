@@ -11,10 +11,6 @@ const Ticket = ({ ticket, type }) => {
     return (
         <Link to={`/ticket/${ticket.id}`} className="ticket">
             <div className="ticket__header">
-                {/* { type === 'uncompleted' && <h4 className="ticket__status">Uncompleted</h4> }
-                { type === 'unassigned' && <h4 className="ticket__status">unassigned</h4> } */}
-                {/* { type === 'overdue' && <h4 className="ticket__status">Overdue</h4> } */}
-                {/* { type === 'Due-Today' && <h4 className="ticket__status">Due Today</h4> } */}
                 {resolved ? <h4 className="ticket__status">Resolved<span><BiCheckDouble /></span></h4> :
                 <h4 className="ticket__status">Unresolved  </h4>}
                 <div className="ticket__assigned-to">

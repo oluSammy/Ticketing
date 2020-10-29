@@ -44,7 +44,7 @@ const Completed = ({ getCompletedTasks, completedTasks, isGettingCompletedTasks,
             }
             {completedTasks && !completedTasks.length &&
                 <div className="empty-task-container">
-                    <EmptyTasks title={Completed} />
+                    <EmptyTasks title='Completed' />
                 </div>
             }
         </div>

@@ -41,7 +41,8 @@ export const asyncRegisterICT = staff => {
                     firstName,
                     surname: lastName,
                     userRight: 'ictStaff',
-                    designation: 'ICT Staff'
+                    designation: 'ICT Staff',
+                    email
                 });
             });
             dispatch(registerICTSuccess());
@@ -74,7 +75,8 @@ export const asyncRegisterStaff = staff => {
                     firstName,
                     surname: lastName,
                     designation,
-                    userRight: 'staff'
+                    userRight: 'staff',
+                    email
                 });
             });
             dispatch(registerStaffSuccess());
