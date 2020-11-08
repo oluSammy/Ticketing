@@ -41,7 +41,7 @@ export const asyncGetDueToday = () => {
             const startOfDay = new Date();
             startOfDay.setHours(0, 0, 0, 0);
             const ticketRef = firestore.collection('tickets').where('deadline', '==', startOfDay)
-            .orderBy('createdAt', 'desc').limit(10);
+            .orderBy('createdAt', 'desc').limit(20);
             ticketRef.onSnapshot(docSnapshot => {
                 let tasks = [];
                 docSnapshot.forEach(doc => {
@@ -64,7 +64,7 @@ export const asyncGetMorDueToday = prevDoc => {
             const startOfDay = new Date();
             startOfDay.setHours(0, 0, 0, 0);
             const ticketRef = firestore.collection('tickets').where('deadline', '==', startOfDay)
-            .orderBy('createdAt', 'desc').startAfter(prevDoc).limit(10);
+            .orderBy('createdAt', 'desc').startAfter(prevDoc).limit(20);
             ticketRef.onSnapshot(docSnapshot => {
                 let tasks = [];
                 docSnapshot.forEach(doc => {

@@ -39,7 +39,7 @@ export const asyncGetUnassigned = () => {
         try {
             dispatch(getUnassignedStart());
             const unassignedRef = firestore.collection('tickets').where('assigned', '==', false)
-            .orderBy('createdAt', 'desc').limit(10);
+            .orderBy('createdAt', 'desc').limit(20);
             unassignedRef.onSnapshot(docSnapshot => {
                 const UnassignedTasks = [];
                 docSnapshot.docs.forEach(doc => UnassignedTasks.push({ id: doc.id, data: doc.data() }));
@@ -58,7 +58,7 @@ export const asyncGetMoreUnassigned = prevDoc => {
         try {
             dispatch(getMoreUnassignedStart());
             const unassignedRef = firestore.collection('tickets').where('assigned', '==', false)
-            .orderBy('deadline', 'desc').startAfter(prevDoc).limit(10);
+            .orderBy('createdAt', 'desc').startAfter(prevDoc).limit(20);
             unassignedRef.onSnapshot(docSnapshot => {
                 const tasks = [];
                 docSnapshot.docs.forEach(task => tasks.push({ id: task.id, data: task.data() }));

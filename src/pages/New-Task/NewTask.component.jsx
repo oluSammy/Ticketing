@@ -18,7 +18,7 @@ const NewTask = ({ currentUser, userDetail, addTask, isAddingTickets, isGettingS
         userDetail &&
         setTicket( ticket => ({...ticket, name: `${userDetail.firstName} ${userDetail.surname}`,
         designation: userDetail.designation}))
-    }, [userDetail])
+    }, [userDetail]);
 
     const handleChange = e => {
         const { name, value } = e.target;

@@ -41,7 +41,7 @@ export const asyncGetDueTasks = () => {
             const today = new Date();
             today.setHours(0, 0, 0, 0);
             const dueRef = firestore.collection('tickets').where('completed', '==', false)
-            .where('deadline', '<', today).orderBy('deadline', 'desc').limit(10);
+            .where('deadline', '<', today).orderBy('deadline', 'desc').limit(20);
             dueRef.onSnapshot(docSnapshot => {
                 const dueTasks = [];
                 docSnapshot.docs.forEach(doc => dueTasks.push({ id: doc.id, data: doc.data() }));
@@ -62,7 +62,7 @@ export const asyncGetMoreDueTasks = prevDoc => {
             const today = new Date();
             today.setHours(0, 0, 0, 0);
             const dueRef = firestore.collection('tickets').where('completed', '==', false)
-            .where('deadline', '<', today).orderBy('deadline', 'desc').startAfter(prevDoc).limit(10);
+            .where('deadline', '<', today).orderBy('deadline', 'desc').startAfter(prevDoc).limit(20);
             dueRef.onSnapshot(docSnapshot => {
                 const dueTasks = [];
                 docSnapshot.docs.forEach(doc => dueTasks.push({ id: doc.id, data: doc.data() }));

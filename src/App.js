@@ -22,7 +22,6 @@ function App({ setCurrentUser, currentUser }) {
       {currentUser ? <Dashboard /> : <LoginPage /> }
     </div>
   );
-
 }
 
 

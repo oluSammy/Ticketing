@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser, selectSidebar } from './../../Redux/User/user.selectors';
-import { toggleSideBar } from './../../Redux/User/user.actions'
+import { toggleSideBar } from './../../Redux/User/user.actions';
 
 const Navbar = ({ currentUser, isSidebarOpen, toggleSidebar }) => {
     return (

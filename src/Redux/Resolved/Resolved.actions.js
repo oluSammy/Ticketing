@@ -39,7 +39,7 @@ export const asyncGetResolved = () => {
         try {
             dispatch(getResolvedStart());
             const ticketRef = firestore.collection('tickets').where('resolved', '==', true).orderBy('completedOn', 'desc')
-            .limit(10);
+            .limit(20);
             ticketRef.onSnapshot(docSnapshot => {
                 const resolved = [];
                 docSnapshot.docs.forEach(task => resolved.push({ id: task.id, data: task.data() }));
@@ -58,7 +58,7 @@ export const asyncGetMoreResolved = prevDoc => {
         try {
             dispatch(getMoreResolvedStart());
             const ticketRef = firestore.collection('tickets').where('resolved', '==', true).orderBy('completedOn', 'desc')
-            .startAfter(prevDoc).limit(10);
+            .startAfter(prevDoc).limit(20);
             ticketRef.onSnapshot(docSnapshot => {
                 const resolved = [];
                 docSnapshot.docs.forEach(task => resolved.push({ id: task.id, data: task.data() }));

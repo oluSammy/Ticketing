@@ -23,7 +23,7 @@ const Sidebar = ({ currentUser, getUserDetails,isGettingUser, userDetail, toggle
     }, [getUserDetails, currentUser]);
 
     const closeSideBar = () => {
-        if(window.innerWidth < 580) {
+        if(window.innerWidth < 500) {
             toggleSidebar();
         }
     }
