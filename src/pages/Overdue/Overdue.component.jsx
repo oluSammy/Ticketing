@@ -38,7 +38,7 @@ const Overdue = ({ getDueTasks, dueTasks, isGettingTasks, getMoreDueTasks, prevD
                 </div> :
                 <div className="tickets__container">
                     {dueTasks && dueTasks.map(task => <Ticket key={task.id} ticket={task} type={'overdue'} />)}
-                    {prevDoc !== undefined &&
+                    {dueTasks && dueTasks.length >= 20 && prevDoc !== undefined &&
                     <div onClick={() => getMoreTasks()} style={{display: 'flex', justifyContent: 'center'}} >
                         <MoreButton />
                     </div>}

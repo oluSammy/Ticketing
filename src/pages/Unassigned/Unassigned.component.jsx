@@ -38,7 +38,7 @@ const Unassigned = ({ getUnassignedTasks, unassignedTasks, isGettingTasks, prevD
             <div className="tickets__container">
                 {unassignedTasks &&
                 unassignedTasks.map(task => <Ticket key={task.id} ticket={task} type={'unassigned'} />)}
-                {prevDoc !== undefined &&
+                {unassignedTasks && unassignedTasks.length >= 20 && prevDoc !== undefined &&
                 <div onClick={() => getMoreTasks()} style={{display: 'flex', justifyContent: 'center'}} >
                     <MoreButton />
                 </div>}

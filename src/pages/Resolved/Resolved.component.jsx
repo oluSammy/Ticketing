@@ -39,7 +39,7 @@ const Resolved = ({ getResolvedTasks, isGettingResolved, resolved, prevDoc, getM
             </div> :
             <div className="tickets__container">
                 {resolved && resolved.map(task => <Ticket key={task.id} ticket={task} type={'overdue'} />)}
-                {prevDoc !== undefined &&
+                {resolved && resolved.length >= 20 && prevDoc !== undefined &&
                 <div onClick={() => getMoreTasks()} style={{display: 'flex', justifyContent: 'center'}} >
                     <MoreButton />
                 </div>}

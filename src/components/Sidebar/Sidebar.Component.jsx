@@ -28,6 +28,69 @@ const Sidebar = ({ currentUser, getUserDetails,isGettingUser, userDetail, toggle
         }
     }
 
+    const sidebarLinks = [
+        {
+            link: '/',
+            icon: <AiOutlineHome className="sidebar__link-icon" />,
+            text: 'Home',
+            NoActiveBg: false
+        },
+        {
+            link: '/new-task',
+            icon: <MdAddCircleOutline className="sidebar__link-icon" />,
+            text: 'New Task',
+            NoActiveBg: true
+        },
+        {
+            link: '/due',
+            icon: <BiCalendarWeek className="sidebar__link-icon" />,
+            text: 'Due Today',
+            NoActiveBg: true
+        },
+        {
+            link: '/overdue',
+            icon: <BiCommentError className="sidebar__link-icon" />,
+            text: 'Overdue',
+            NoActiveBg: true
+        },
+        {
+            link: '/completed',
+            icon: <BiCheckDouble className="sidebar__link-icon" />,
+            text: 'Completed',
+            NoActiveBg: true
+        },
+        {
+            link: '/resolved',
+            icon: <BiCheckDouble className="sidebar__link-icon" />,
+            text: 'Resolved',
+            NoActiveBg: true
+        },
+        {
+            link: '/uncompleted',
+            icon: <BiMessageAltError className="sidebar__link-icon" />,
+            text: 'Uncompleted',
+            NoActiveBg: true
+        },
+        {
+            link: '/unassigned',
+            icon: <CgAssign className="sidebar__link-icon" />,
+            text: 'Unassigned Tickets',
+            NoActiveBg: true
+        },
+        {
+            link: '/register-staff',
+            icon: <FiUserPlus className="sidebar__link-icon" />,
+            text: 'Register Staff',
+            NoActiveBg: true
+        },
+        {
+            link: '/register-ict',
+            icon: <BiUserPlus className="sidebar__link-icon" />,
+            text: 'Register ICT Staff',
+            NoActiveBg: true
+        }
+    ];
+
     return (
         <div className="sidebar">
             <div className="sidebar__user">
@@ -44,46 +107,18 @@ const Sidebar = ({ currentUser, getUserDetails,isGettingUser, userDetail, toggle
                 }
             </div>
             <ul className="sidebar__list">
-                <NavLink to="/" className="sidebar__link" onClick={closeSideBar}>
-                    <AiOutlineHome className="sidebar__link-icon" />
-                    <span>Home</span>
-                </NavLink>
-                <NavLink to="/new-task" className="sidebar__link" activeClassName="sidebar__active" onClick={closeSideBar}>
-                    <MdAddCircleOutline className="sidebar__link-icon" />
-                    <span>New Task</span>
-                </NavLink>
-                <NavLink to="/due" className="sidebar__link" activeClassName="sidebar__active" onClick={closeSideBar}>
-                    <BiCalendarWeek className="sidebar__link-icon" />
-                    <span>Due Today</span>
-                </NavLink>
-                <NavLink to="/overdue" className="sidebar__link" activeClassName="sidebar__active" onClick={closeSideBar}>
-                    <BiCommentError className="sidebar__link-icon" />
-                    <span>Overdue</span>
-                </NavLink>
-                <NavLink to="/resolved" className="sidebar__link" activeClassName="sidebar__active" onClick={closeSideBar}>
-                    <BiCheckDouble className="sidebar__link-icon" />
-                    <span>Resolved Tickets</span>
-                </NavLink>
-                <NavLink to="/unassigned" className="sidebar__link" activeClassName="sidebar__active" onClick={closeSideBar}>
-                    <CgAssign className="sidebar__link-icon" />
-                    <span>Unassigned Tickets</span>
-                </NavLink>
-                <NavLink to="/completed" className="sidebar__link" activeClassName="sidebar__active" onClick={closeSideBar}>
-                    <BiCheckDouble className="sidebar__link-icon" />
-                    <span>Completed </span>
-                </NavLink>
-                <NavLink to="/uncompleted" className="sidebar__link" activeClassName="sidebar__active" onClick={closeSideBar}>
-                    <BiMessageAltError className="sidebar__link-icon" />
-                    <span>Uncompleted </span>
-                </NavLink>
-                <NavLink to="/register-staff" className="sidebar__link" activeClassName="sidebar__active" onClick={closeSideBar}>
-                    <FiUserPlus className="sidebar__link-icon" />
-                    <span>Register Staff</span>
-                </NavLink>
-                <NavLink to="/register-ict" className="sidebar__link" activeClassName="sidebar__active" onClick={closeSideBar}>
-                    <BiUserPlus className="sidebar__link-icon" />
-                    <span>Register ICT Staff</span>
-                </NavLink>
+                {sidebarLinks.map(link =>
+                    link.NoActiveBg ?
+                    <NavLink key={link.text} to={link.link} className="sidebar__link" activeClassName="sidebar__active"
+                    onClick={closeSideBar} >
+                        {link.icon}
+                        <span>{link.text}</span>
+                    </NavLink> :
+                    <NavLink key={link.text} to={link.link} className="sidebar__link" onClick={closeSideBar} >
+                        {link.icon}
+                        <span>{link.text}</span>
+                    </NavLink>
+                )}
             </ul>
         </div>
     )
