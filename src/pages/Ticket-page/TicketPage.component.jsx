@@ -74,7 +74,7 @@ const TicketPage = ({ getTicket, isGettingTicket , ticket, isGettingIctStaffs, i
                     <h6 className="ticket-page__label">Assign To:</h6>
                     }
                     {ticket.assigned ?
-                    <div className="ticket-page__key">{ticket.assignedTo}</div> :
+                    <div className="ticket-page__key">{ticket.assignedToName}</div> :
                     <form className="ticket-page__key" onSubmit={assignStaff}
                         style={{display: 'flex', flexDirection: 'column'}}
                     >

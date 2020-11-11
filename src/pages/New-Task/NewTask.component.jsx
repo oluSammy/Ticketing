@@ -12,12 +12,12 @@ import { selectIsGettingIctStaffs, selectIctStaffs } from './../../Redux/ict-sta
 const NewTask = ({ currentUser, userDetail, addTask, isAddingTickets, isGettingStaffs, ictStaffs }) => {
     const [ticket, setTicket] =
     useState({ name: '',  email: currentUser ? currentUser.email : '',
-    designation: '', assign: '', deadline: '', title: '', task: '' });
+    designation: '', assign: '', deadline: '', title: '', task: '', uid: '', assignedToName: '' });
 
     useEffect(() => {
         userDetail &&
         setTicket( ticket => ({...ticket, name: `${userDetail.firstName} ${userDetail.surname}`,
-        designation: userDetail.designation}))
+        designation: userDetail.designation, uid: `${userDetail.uid}`}))
     }, [userDetail]);
 
     const handleChange = e => {
@@ -27,7 +27,8 @@ const NewTask = ({ currentUser, userDetail, addTask, isAddingTickets, isGettingS
 
     const createTask = async e => {
         e.preventDefault();
-        await addTask(ticket);
+        const ictStaff = ictStaffs.find(el => el.id === ticket.assign);
+        await addTask(ticket, `${ictStaff.data.surname} ${ictStaff.data.firstName}`);
         setTicket({ ...ticket, assign: '', deadline: '', title: '', task: '' });
     }
 
@@ -62,7 +63,7 @@ const NewTask = ({ currentUser, userDetail, addTask, isAddingTickets, isGettingS
                         <option value="">Loading</option> :
                         ictStaffs && ictStaffs.map(staff =>
                         <option key={staff.id}
-                        value={`${staff.data.firstName} ${staff.data.surname}`}>
+                        value={`${staff.data.uid}`}>
                         {`${staff.data.firstName} ${staff.data.surname}`}</option>)}
                     </select>
                 </div>
@@ -99,7 +100,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchTProps = dispatch => ({
-    addTask: ticket => dispatch(asyncAddTicket(ticket))
+    addTask: (ticket, assignedToName) => dispatch(asyncAddTicket(ticket, assignedToName))
 })
 
 export default connect(mapStateToProps, mapDispatchTProps) (NewTask);

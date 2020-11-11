@@ -16,10 +16,10 @@ const addTicketFailure = errMsg => ({
     payload: errMsg
 });
 
-export const asyncAddTicket = ticket => {
+export const asyncAddTicket = (ticket, assignedToName) => {
     return async dispatch => {
         try {
-            const { name, email, designation, assign, deadline, title, task } = ticket;
+            const { name, email, designation, assign, deadline, title, task, uid } = ticket;
             dispatch(addTicketStart());
             const dateArray = deadline.split("-");
             const newDeadline = new Date(dateArray[0], `${ +dateArray[1] - 1}`, dateArray[2]);
@@ -31,18 +31,20 @@ export const asyncAddTicket = ticket => {
                 senderEmail: email,
                 senderDesignation: designation,
                 assignedTo: assign,
+                assignedToName,
                 completed: false,
                 deadline: fireStamp,
                 title,
                 task,
                 resolved: false,
                 assigned: true,
-                createdAt
+                createdAt,
+                senderUid: uid
             });
             dispatch(addTicketSuccess());
             Swal.fire(
                 'Done!',
-                `New Task Assigned to ${assign}`,
+                `New Task Assigned`,
                 'success'
             );
         } catch (errMsg) {

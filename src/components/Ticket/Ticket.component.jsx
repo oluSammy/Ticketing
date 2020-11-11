@@ -6,7 +6,7 @@ import { BiCheckDouble } from 'react-icons/bi';
 import { dateBeforeDeadline, timeStampToDate, dateAfterCompletion } from '../../utility-functions/dateToTimestamp';
 
 const Ticket = ({ ticket, type }) => {
-    const { assigned, assignedTo, senderName, task, title, createdAt, deadline, completedOn, resolved } = ticket.data;
+    const { assigned, senderName, task, title, createdAt, deadline, completedOn, resolved, assignedToName } = ticket.data;
 
     return (
         <Link to={`/ticket/${ticket.id}`} className="ticket">
@@ -17,7 +17,7 @@ const Ticket = ({ ticket, type }) => {
                     {assigned ?
                         <span className="ticket__symbol" >Assigned to &rarr; </span>: 'Unassigned'
                 }
-                <h6 className="ticket__staff-assigned">{assignedTo}</h6>
+                <h6 className="ticket__staff-assigned">{assignedToName}</h6>
                 </div>
             </div>
             <h3 className="ticket__title">{title}</h3>

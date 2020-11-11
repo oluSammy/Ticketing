@@ -13,6 +13,7 @@ import { selectCurrentUser, selectIsGettingUserDetail, selectUserDetail } from '
 import { asyncGetUser } from '../../Redux/User/user.actions';
 import { createStructuredSelector } from 'reselect';
 import { toggleSideBar } from './../../Redux/User/user.actions';
+import Loader from 'react-loader-spinner';
 
 const Sidebar = ({ currentUser, getUserDetails,isGettingUser, userDetail, toggleSidebar  }) => {
 
@@ -98,7 +99,16 @@ const Sidebar = ({ currentUser, getUserDetails,isGettingUser, userDetail, toggle
                     <GrUserManager className="sidebar__user--icon"/>
                 </div>
                 {isGettingUser ?
-                    <div style={{textAlign: 'center'}}> * </div> :
+                    // <div style={{textAlign: 'center'}}> * </div>
+                    <div className="sidebar__user--text" style={{marginTop: '1.3rem'}}>
+                        <Loader
+                            type="Oval"
+                            color="#FFFFFF"
+                            height={30}
+                            width={30}
+                        />
+                    </div>
+                    :
                     userDetail &&
                     <div>
                         <p className="sidebar__user--text sidebar__user--name">{userDetail.designation}</p>
