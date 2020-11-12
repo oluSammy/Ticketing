@@ -27,7 +27,8 @@ const TicketPage = ({ getTicket, isGettingTicket , ticket, isGettingIctStaffs, i
 
     const assignStaff = async e => {
         e.preventDefault();
-        await assignTicket(id, `${staff}`, deadline);
+        const ictStaff = ictStaffs.find(el => el.id === staff);
+        await assignTicket(id, ictStaff.id, `${ictStaff.data.surname} ${ictStaff.data.firstName}`, deadline);
     }
 
     return (
@@ -87,7 +88,7 @@ const TicketPage = ({ getTicket, isGettingTicket , ticket, isGettingIctStaffs, i
                                 <option value="">loading</option>:
                                 ictStaffs && ictStaffs.map(staff =>
                                     <option key={staff.id}
-                                    value={`${staff.data.firstName} ${staff.data.surname}`}>
+                                    value={staff.id}>
                                     {`${staff.data.firstName} ${staff.data.surname}`}</option>)}
                             </select>
                         </div>
@@ -152,7 +153,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
     getTicket: id => dispatch(asyncGetTicket(id)),
-    assignTicket: (id, staff, deadline) => dispatch(asyncAssignTicket(id, staff, deadline)),
+    assignTicket: (id, staffId, staffName, deadline) => dispatch(asyncAssignTicket(id, staffId, staffName, deadline)),
     resolveTicket: id => dispatch(asyncResolveTicket(id))
 })
 

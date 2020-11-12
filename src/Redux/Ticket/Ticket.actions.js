@@ -56,7 +56,7 @@ export const asyncGetTicket = id => {
     }
 }
 
-export const asyncAssignTicket = (id, staff, deadline) => {
+export const asyncAssignTicket = (id, staffId, staffName, deadline) => {
     return async dispatch => {
         try {
             dispatch(assignTicketStart());
@@ -64,7 +64,7 @@ export const asyncAssignTicket = (id, staff, deadline) => {
             const newDeadline = new Date(dateArray[0], `${ +dateArray[1] - 1}`, dateArray[2]);
             const fireStamp = new firebase.firestore.Timestamp.fromDate(newDeadline);
             const ticketRef = firestore.collection('tickets').doc(`${id}`);
-            await ticketRef.update({ assignedTo: `${staff}`, assigned: true, deadline: fireStamp });
+            await ticketRef.update({ assignedTo: `${staffId}`, assigned: true, deadline: fireStamp, assignedToName:  staffName});
             dispatch(assignTicketSuccess());
         } catch(errMsg) {
             dispatch(assignTicketFailure(errMsg));
